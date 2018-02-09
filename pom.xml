@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+   
+
+    <groupId>qa.perfana</groupId>
+    <artifactId>gatling-mean</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+ 
+        <encoding>UTF-8</encoding>
+
+        <!-- dependency versioning -->
+        <gatling.version>2.3.0</gatling.version>
+        <perfana-gatling-maven-plugin.version>0.0.11</perfana-gatling-maven-plugin.version>
+
+        <!-- Perfana url  -->
+        <perfanaUrl>https://perfana.qa</perfanaUrl>
+
+        <!-- Default Simulation class  -->
+        <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
+
+        <!-- By default Jenkins build Url is used -->
+        <CIBuildResultsUrl>${BUILD_URL}</CIBuildResultsUrl>
+
+        <!-- By default no proxy is used -->
+        <useProxy>false</useProxy>
+
+        <!-- By default debugmode is off -->
+        <debug>false</debug>
+
+        <!-- Default graphite namespace -->
+        <graphitePrefix>gatling2.debug</graphitePrefix>
+
+        <!-- Default scenario -->
+        <scenario>acceptance</scenario>
+
+        <!-- Hostname for using in gatling.data.graphite.rootPreFix when running distributed test on Linux injectors-->
+        <hostname>${env.INJECTOR}</hostname>
+
+        <!-- By default the scripts runs as master -->
+        <isMasterScript>true</isMasterScript>
+
+        <!-- By default don't send data to perfana -->
+        <perfanaEnabled>false</perfanaEnabled>
+
+        <!-- By default don't assert test results -->
+        <assertResultsEnabled>false</assertResultsEnabled>
+
+        <!-- Default load settings -->
+        <initialUsersPerSecond>1</initialUsersPerSecond>
+        <targetUsersPerSecond>1</targetUsersPerSecond>
+        <rampupTimeInSeconds>60</rampupTimeInSeconds>
+        <constantLoadTimeInSeconds>900</constantLoadTimeInSeconds>
+
+        <!-- Settings for the Perfana Dashboard -->
+        <application>${perfanaApplicationName}</application>
+        <applicationRelease>1.0</applicationRelease>
+        
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.gatling.highcharts</groupId>
+                <artifactId>gatling-charts-highcharts</artifactId>
+                <version>${gatling.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>qa.perfana</groupId>
+                    <artifactId>perfana-gatling-maven-plugin</artifactId>
+                    <version>${perfana-gatling-maven-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <configuration>
+                            <name>build.time</name>
+                            <pattern>yyyyMMdd-HHmmss</pattern>
+                            <timeZone>CET</timeZone>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>qa.perfana</groupId>
+                <artifactId>perfana-gatling-maven-plugin</artifactId>
+                <configuration>
+                    <dataFolder>src/test/resources/data</dataFolder>
+                    <resultsFolder>target/gatling/results</resultsFolder>
+                    <bodiesFolder>src/test/resources/request-bodies</bodiesFolder>
+                    <simulationsFolder>src/test/scala</simulationsFolder>
+                    <noReports>true</noReports>
+                    <simulationClass>${applicationSimulation}</simulationClass>
+                    <perfanaUrl>${perfanaUrl}</perfanaUrl>
+                    <application>${application}</application>
+                    <applicationRelease>${applicationRelease}</applicationRelease>
+                    <testType>${testType}</testType>
+                    <testEnvironment>${testEnvironment}</testEnvironment>
+                    <testRunId>${testRunId}</testRunId>
+                    <CIBuildResultsUrl>${CIBuildResultsUrl}</CIBuildResultsUrl>
+                    <rampupTimeInSeconds>${rampupTimeInSeconds}</rampupTimeInSeconds>
+                    <constantLoadTimeInSeconds>${constantLoadTimeInSeconds}</constantLoadTimeInSeconds>
+                    <assertResultsEnabled>${assertResultsEnabled}</assertResultsEnabled>
+                    <perfanaEnabled>${perfanaEnabled}</perfanaEnabled>
+                    <jvmArgs>
+                        <jvmArg>-Dscenario=${scenario}</jvmArg>
+                        <jvmArg>-DtestRunId=${testRunId}</jvmArg>
+                        <jvmArg>-DtargetBaseUrl=${targetBaseUrl}</jvmArg>
+                        <jvmArg>-DinitialUsersPerSecond=${initialUsersPerSecond}</jvmArg>
+                        <jvmArg>-DtargetUsersPerSecond=${targetUsersPerSecond}</jvmArg>
+                        <jvmArg>-DrampupTimeInSeconds=${rampupTimeInSeconds}</jvmArg>
+                        <jvmArg>-DconstantLoadTimeInSeconds=${constantLoadTimeInSeconds}</jvmArg>
+                        <jvmArg>-Ddebug=${debug}</jvmArg>
+                        <jvmArg>-DuseProxy=${useProxy}</jvmArg>
+                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=${graphitePrefix}</jvmArg>
+                        <jvmArg>-Xms4g</jvmArg>
+                        <jvmArg>-Xmx4g</jvmArg>
+                        <jvmArg>-Djavax.net.ssl.sessionCacheSize=1000</jvmArg>
+                        <jvmArg>-XX:+UseG1GC</jvmArg>
+                        <jvmArg>-XX:+ParallelRefProcEnabled</jvmArg>
+                    </jvmArgs>
+                    <!--<fork>true</fork>-->
+                    <propagateSystemProperties>false</propagateSystemProperties>
+                    <!--<failOnError>true</failOnError>-->
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+  <!-- ************************************************************************ ==
+  == Below we have defined three sets of profiles, which control the type of    ==
+  == test that will be run and the targeted environment.                        ==
+  == If you wish to run a stress test on acceptance, use:                       ==
+  == mvn perfana-gatling:integration-test -Ptest-type-stress,test-env-acc       ==
+  == ************************************************************************ -->
+
+    <profiles>
+
+    <!-- Test environment profiles -->
+
+    <profile>
+        <id>test-env-tst</id>
+        <activation>
+            <activeByDefault>false</activeByDefault>
+        </activation>
+        <properties>
+            <targetBaseUrl>https://tst.example.com</targetBaseUrl>
+            <testEnvironment>tst</testEnvironment>
+        </properties>
+    </profile>
+
+
+    <profile>
+        <id>test-env-acc</id>
+        <activation>
+            <activeByDefault>false</activeByDefault>
+        </activation>
+        <properties>
+            <targetBaseUrl>https://acc.example.com</targetBaseUrl>
+            <testEnvironment>acc</testEnvironment>
+        </properties>
+    </profile>
+
+
+    <!-- Test type profiles -->
+
+        <profile>
+            <id>test-type-stress</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testType>stressTest</testType>
+                <initialUsersPerSecond>1</initialUsersPerSecond>
+                <targetUsersPerSecond>100</targetUsersPerSecond>
+                <rampupTimeInSeconds>3600</rampupTimeInSeconds>
+                <constantLoadTimeInSeconds>1</constantLoadTimeInSeconds>
+                <perfanaEnabled>true</perfanaEnabled>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <graphitePrefix>gatling2</graphitePrefix>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test-type-load</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testType>loadTest</testType>
+                <initialUsersPerSecond>1</initialUsersPerSecond>
+                <targetUsersPerSecond>40</targetUsersPerSecond>
+                <rampupTimeInSeconds>600</rampupTimeInSeconds>
+                <constantLoadTimeInSeconds>3600</constantLoadTimeInSeconds>
+                <perfanaEnabled>true</perfanaEnabled>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <graphitePrefix>gatling2</graphitePrefix>
+            </properties>
+        </profile>
+        <profile>
+            <id>test-type-endurance</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testType>enduranceTest</testType>
+                <initialUsersPerSecond>1</initialUsersPerSecond>
+                <targetUsersPerSecond>60</targetUsersPerSecond>
+                <rampupTimeInSeconds>900</rampupTimeInSeconds>
+                <constantLoadTimeInSeconds>172800</constantLoadTimeInSeconds>
+                <perfanaEnabled>true</perfanaEnabled>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <graphitePrefix>gatling2</graphitePrefix>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>test-type-nightly</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <testType>nightlyLoadTest</testType>
+                <initialUsersPerSecond>1</initialUsersPerSecond>
+                <targetUsersPerSecond>40</targetUsersPerSecond>
+                <rampupTimeInSeconds>600</rampupTimeInSeconds>
+                <constantLoadTimeInSeconds>3600</constantLoadTimeInSeconds>
+                <perfanaEnabled>true</perfanaEnabled>
+                <assertResultsEnabled>true</assertResultsEnabled>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <graphitePrefix>gatling2.nightly</graphitePrefix>
+            </properties>
+        </profile>
+
+        <!-- Scenarios-->
+
+        <profile>
+            <id>acceptance</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <scenario>acceptance</scenario>
+            </properties>
+        </profile>
+
+
+
+
+        <!-- This profile can be used to run the script in debug mode. This results in running the "debug" scenario and results are pushed to debug namespace in Graphite  -->
+        <profile>
+            <id>debug</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <debug>true</debug>
+                <graphitePrefix>gatling2.debug</graphitePrefix>
+                <scenario>debug</scenario>
+            </properties>
+        </profile>
+
+
+        <!-- This profile can be used to route the traffic through a proxy for debugging  -->
+        <profile>
+            <id>proxy</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <useProxy>true</useProxy>
+            </properties>
+        </profile>
+
+
+
+        <!-- This profile can be used to trigger the assertions  to assert test run results from the pipeline   -->
+        <profile>
+            <id>assert-results</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <assertResultsEnabled>true</assertResultsEnabled>
+            </properties>
+        </profile>
+
+        <!-- This profile can be used in a distributed test -->
+        <profile>
+            <id>distributed-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <graphitePrefix>gatling2.${hostname}</graphitePrefix>
+            </properties>
+        </profile>
+
+        <!-- This profile can be used to set the script as slave script in a distributed test -->
+        <profile>
+            <id>is-slave-script</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <perfanaEnabled>false</perfanaEnabled>
+            </properties>
+        </profile>
+
+    </profiles>
+</project>
