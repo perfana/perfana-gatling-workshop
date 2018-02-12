@@ -16,24 +16,16 @@ object Scenarios {
   /**
    * These are the scenarios run in 'normal' mode.
    */
-  val acceptanceTestScenario = scenario("Acceptance test").feed(SomeDataFeeder.someData)
-    .exitBlockOnFail(
-      randomSwitch(
-
-        95.0 -> exec(UseCase2.steps),
-        5.0 -> exec(UseCase1.steps)
-
-      )
-    )
+  val acceptanceTestScenario = scenario("Acceptance test")
+    .exec(Home.userAction)
+    .exec(SignUp.userAction)
 
   /**
-   * These are the scenarios run in 'debug' mode.
-   */
-  val debugScenario = scenario("debug").feed(SomeDataFeeder.someData)
-    .exitBlockOnFail(
-      exec(UseCase2.steps)
-      .exec(UseCase1.steps)
-    )
+    * These are the scenarios run in 'debug' mode.
+    */
+  val debugScenario = scenario("debug")
+    .exec(Home.userAction)
+    .exec(SignUp.userAction)
 
 
 }
