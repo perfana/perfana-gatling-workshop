@@ -17,6 +17,7 @@ object Scenarios {
    * These are the scenarios run in 'normal' mode.
    */
   val acceptanceTestScenario = scenario("Acceptance test")
+    .feed(UserFeeder.user)
     .exec(Home.userAction)
     .exec(SignUp.userAction)
 
@@ -24,8 +25,10 @@ object Scenarios {
     * These are the scenarios run in 'debug' mode.
     */
   val debugScenario = scenario("debug")
-    .exec(Home.userAction)
-    .exec(SignUp.userAction)
-
+    .repeat(5) {
+      feed(UserFeeder.user)
+        .exec(Home.userAction)
+        .exec(SignUp.userAction)
+    }
 
 }
