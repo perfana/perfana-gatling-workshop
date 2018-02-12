@@ -174,17 +174,6 @@
     <!-- Test environment profiles -->
 
     <profile>
-        <id>test-env-local</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>http://localhost:3333</targetBaseUrl>
-            <testEnvironment>local</testEnvironment>
-        </properties>
-    </profile>
-
-   <profile>
         <id>test-env-tst</id>
         <activation>
             <activeByDefault>false</activeByDefault>
