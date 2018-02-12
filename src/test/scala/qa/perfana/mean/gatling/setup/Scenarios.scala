@@ -14,12 +14,20 @@ import scala.concurrent.duration._
 object Scenarios {
 
   /**
-   * These are the scenarios run in 'normal' mode.
-   */
-  val acceptanceTestScenario = scenario("Acceptance test")
+    * These are the scenarios run in 'normal' mode.
+    */
+
+  val acceptanceTestScenario = scenario("acceptanceTestScenario")
     .feed(UserFeeder.user)
     .exec(Home.userAction)
-    .exec(SignUp.userAction)
+    .exec(SignIn.userAction)
+    .repeat(3){
+      randomSwitch(
+        50.0 -> exec(CreateArticle.userAction)
+          .exec(ListArticles.userAction),
+        50.0 -> exec(ListArticles.userAction)
+      )
+    }
 
   /**
     * These are the scenarios run in 'debug' mode.

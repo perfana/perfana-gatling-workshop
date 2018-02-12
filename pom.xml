@@ -17,7 +17,7 @@
         <perfana-gatling-maven-plugin.version>0.0.11</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
-        <perfanaUrl>https://perfana.qa</perfanaUrl>
+        <perfanaUrl>http://localhost:3000</perfanaUrl>
 
         <!-- Default Simulation class  -->
         <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
@@ -56,7 +56,8 @@
         <constantLoadTimeInSeconds>900</constantLoadTimeInSeconds>
 
         <!-- Settings for the Perfana Dashboard -->
-        <application>${perfanaApplicationName}</application>
+
+        <application>Mean</application>
         <applicationRelease>1.0</applicationRelease>
         
     </properties>
@@ -235,14 +236,15 @@
             <properties>
                 <testType>loadTest</testType>
                 <initialUsersPerSecond>1</initialUsersPerSecond>
-                <targetUsersPerSecond>40</targetUsersPerSecond>
-                <rampupTimeInSeconds>600</rampupTimeInSeconds>
-                <constantLoadTimeInSeconds>3600</constantLoadTimeInSeconds>
+                <targetUsersPerSecond>2</targetUsersPerSecond>
+                <rampupTimeInSeconds>60</rampupTimeInSeconds>
+                <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
                 <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
                 <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
+
         <profile>
             <id>test-type-endurance</id>
             <activation>
