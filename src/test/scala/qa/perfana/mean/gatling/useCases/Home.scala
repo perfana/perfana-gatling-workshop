@@ -13,8 +13,6 @@ object  Home{
   val headers_1 = Map("Accept" -> "application/json, text/plain, */*")
 
 
-
-
   val userAction =
     exec(http("Home")
       .get("/")

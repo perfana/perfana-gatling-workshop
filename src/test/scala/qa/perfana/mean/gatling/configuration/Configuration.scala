@@ -71,8 +71,6 @@ object Configuration {
     .inferHtmlResources(WhiteList(""".*""" + Configuration.targetBaseUrl + """.*"""))
     .silentResources
 
-
-
   private val baseHttpDebugProtocol = http
     .baseURL(Configuration.targetBaseUrl)
     .acceptHeader("text/html")
@@ -86,7 +84,6 @@ object Configuration {
         println("httpCode: " + ExtraInfo.response.statusCode + ", body: "+ ExtraInfo.response.body)
       Nil
     })
-
 
   def httpDebugProtocol ={
     /* Add proxy if specified */

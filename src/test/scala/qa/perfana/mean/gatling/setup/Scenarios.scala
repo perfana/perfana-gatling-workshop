@@ -16,6 +16,7 @@ object Scenarios {
   /**
    * These are the scenarios run in 'normal' mode.
    */
+
   val acceptanceTestScenario = scenario("Acceptance test")
     .exec(Home.userAction)
     .exec(SignUp.userAction)
@@ -23,6 +24,7 @@ object Scenarios {
   /**
     * These are the scenarios run in 'debug' mode.
     */
+
   val debugScenario = scenario("debug")
     .exec(Home.userAction)
     .exec(SignUp.userAction)

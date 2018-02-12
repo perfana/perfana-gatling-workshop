@@ -12,7 +12,6 @@ object  SignUp{
     "Origin" -> "http://localhost:3333")
 
 
-
   val userAction =
 
     exec(http("SignUp - Authentication html")
