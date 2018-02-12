@@ -5,7 +5,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class AddArticle extends Simulation {
+class CreateArticle extends Simulation {
 
 	val httpProtocol = http
 		.baseURL("http://localhost:3333")
