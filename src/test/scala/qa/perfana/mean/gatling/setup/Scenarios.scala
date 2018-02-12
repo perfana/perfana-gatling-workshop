@@ -25,9 +25,8 @@ object Scenarios {
     * These are the scenarios run in 'debug' mode.
     */
   val debugScenario = scenario("debug")
-     .repeat(5) {
-       feed(UserFeeder.user)
-         .exec(Home.userAction)
-         .exec(SignIn.userAction)
-     }
+       .feed(UserFeeder.user)
+       .exec(Home.userAction)
+       .exec(SignIn.userAction)
+       .exec(CreateArticle.userAction)
 }
