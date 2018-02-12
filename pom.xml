@@ -56,7 +56,7 @@
         <constantLoadTimeInSeconds>900</constantLoadTimeInSeconds>
 
         <!-- Settings for the Perfana Dashboard -->
-        <application>${perfanaApplicationName}</application>
+        <application>Mean</application>
         <applicationRelease>1.0</applicationRelease>
         
     </properties>
