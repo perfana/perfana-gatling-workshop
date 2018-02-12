@@ -49,7 +49,7 @@ The template script provides an (opinionated) setup to provide a load profile to
     </activation>
     <properties>
         <testType>loadTest</testType>
-        <initialUsersPerSecond>1</initialUsersPerSecond>
+        <initialUsersPerSecond>0.5</initialUsersPerSecond>
         <targetUsersPerSecond>1</targetUsersPerSecond>
         <rampupTimeInSeconds>60</rampupTimeInSeconds>
         <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
@@ -60,7 +60,7 @@ The template script provides an (opinionated) setup to provide a load profile to
 </profile>
 ```
 
-> In this profile we tell Gatling to start the test injecting 1 user per second (initialUsersPerSecond), and ramp this load up to 2 users per second (targetUsersPerSecond) in 60 seconds (rampupTimeInSeconds). The  load is then kept constant at 2 started users per seconds for 300 seconds (constantLoadTimeInSeconds)
+> In this profile we tell Gatling to start the test injecting 1 user per 2 seconds (initialUsersPerSecond), and ramp this load up to 1 users per second (targetUsersPerSecond) in 60 seconds (rampupTimeInSeconds). The  load is then kept constant at 2 started users per seconds for 300 seconds (constantLoadTimeInSeconds)
   
 The values from the Maven profile are transferred to the Gatling inject API in the Setup.scala file:
 

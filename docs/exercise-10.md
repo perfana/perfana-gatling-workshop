@@ -13,9 +13,9 @@ Perfana has two types of KPI's:
 * Requirements
 * Benchmark thresholds
 
-Requirement are simple checks if a metric is "smaller than" or "greater than" a specified value. For instance: "The percentage of failed transactions during the test should be smaller than 1"
+Requirement are simple checks to validate if a metric is "smaller than" or "greater than" a specified value. For instance: "The percentage of failed transactions during the test should be smaller than 1"
 
-The benchmark thresholds are used to check if metric deviation between test runs are within a specified range. That can be within an absolute or relative range. An example: "The allowed deviation between two test runs in average response times should not be greater than 25%"
+The benchmark thresholds are used to check if metric deviation between test runs are within a specified range, absolute or relative. An example: "The allowed deviation between two test runs in average response times should not be greater than 25%"
 
 Now let's add some KPI's to our test!
 
@@ -26,6 +26,7 @@ Now let's add some KPI's to our test!
 
 ![KPI Gatling](assets/images/kpi-gatling-1.png) ![KPI System](assets/images/kpi-system-1.png)
 
+> The "Average all panel series when comparing test runs" is checked for the CPU Host Usage KPI. This is done because the Mean (nodeJs) process is single threaded and bound to one core only. This could well be a different core next time we run the test! 
 
 As soon as a KPI has been added or updated, Perfana will analyze all test runs that the KPI applies to. To see the result, navigate to the test run summary view. The benchmark section will show the consolidated result for the specified requirements. You can drilldown to more details by clicking on the result. 
 
