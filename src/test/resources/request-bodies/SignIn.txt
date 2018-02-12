@@ -1,1 +1,4 @@
-{"username":"demo1","password":"demo1Password!"}
+{
+  "username": "${user}",
+  "password": "${user}Password!"
+}
