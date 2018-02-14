@@ -4,6 +4,20 @@
 
 This workshop is aiming to get you acquainted with the Perfana performance test framework. You will learn how to create a load test script using Gatling and how to create a continuous performance validation setup that can be integrated in your CI/CD pipelines.
 
+## Scope
+
+The workshop covers the following subjects:
+
+* Create a Gatling script using the Perfana-Gatling template script
+* Setting up your aplication in Perfana
+* Setting up continuous performance validation by integratin your load test in your Jenkins CI pipeline.
+
+It does NOT cover:
+
+* How to create Grafana dashboards. Please refer to the [Grafana documentation](http://docs.grafana.org/guides/getting_started/) to get up to speed with Grafana. 
+
+
+
 ## Prerequisites
 * [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
 * JDK8 installed
@@ -45,5 +59,5 @@ Please clone this repository and follow the instructions.
 
 ## Continuous performance validation
 
-[exercise 11: Integrate test in CI pipeline](exercise-11.md)
+[exercise 11: Continuous performance validation](exercise-11.md)
 

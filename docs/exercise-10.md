@@ -76,3 +76,6 @@ You can use the presets to view specific time frames for KPI's or choose "View a
 
 If, for some reason, Perfana failed to write the trend points to InfluxDb you can trigger this manually bij clicking "Write trend points".
 
+[Home](index.md) 
+[Previous exercise](exercise-9.md) 
+[Next exercise](exercise-11.md)  

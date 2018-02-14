@@ -1,77 +1,62 @@
 [Home](index.md) 
-[Previous exercise](exercise-9.md) 
-[Next exercise](exercise-11.md)  
+[Previous exercise](exercise-10.md) 
+  
 
-# Integrate test in CI pipeline 
+# Continuous performance validation 
 
-The Perfana dashboard can save you lots of time by automatically analyzing test results. It allows you to specify requirements for any metric that is available via a Grafana dashboard that is linked to a test. Furthermore it can compare test runs and report on deltas between them.
+To setup your continuous performance validation you can include a load test in your continuous integration pipeline. The perfana-gatling-maven-plugin has an option to assert the consolidated KPI results in Perfana and pass or fail a build based on this assertion.
+  
+This adds feedback on performance of an application to the feedback loop, allowing developers to act immediately if a Key Performance Indicator is not up to par for a build due to the latest code changes. On the other hand, if a build passes, the team knows that the application still adheres to the configured KPI's and can continue developing without the need to look into the load test results.          
 
-## Key Performance Indicators (KPI)
+## Perfana-gatling-maven-plugin configuration
 
-Perfana has two types of KPI's:
-
-* Requirements
-* Benchmark thresholds
-
-Requirement are simple checks if a metric is "smaller than" or "greater than" a specified value. For instance: "The percentage of failed transactions during the test should be smaller than 1"
-
-The benchmark thresholds are used to check if metric deviation between test runs are within a specified range. That can be within an absolute or relative range. An example: "The allowed deviation between two test runs in average response times should not be greater than 25%"
-
-Now let's add some KPI's to our test!
-
-* Click "Applications" in the side menu
-* Use the filters to select application "Mean", environment "local" and test type "loadTest"
-* Click on the "KPI" tab and click "Add KPI"
-* Create the following KPI's: 
-
-![KPI Gatling](assets/images/kpi-gatling-1.png) ![KPI System](assets/images/kpi-system-1.png)
-
-
-As soon as a KPI has been added or updated, Perfana will analyze all test runs that the KPI applies to. To see the result, navigate to the test run summary view. The benchmark section will show the consolidated result for the specified requirements. You can drilldown to more details by clicking on the result. 
-
-
-![Requirement detailed results](assets/images/requirement-results.png)
-
-
-To see some test run comparison results we have to run the test again:
+By using the "assert-results" profile the perfana-gatling-maven-plugin will get the consolidated results for a test run after the test run has finished.
 
 ```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,test-type-load
+mvn clean install perfana-gatling:integration-test -Ptest-env-local,test-type-load,assert-results
+```
+The consolidated test run results are exposed via a REST API by Perfana. The response will look something like this
+
+```json
+{
+	"requirements": {
+		"result": false,
+		"deeplink": "http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-112643/requirements?application=Mean&testType=loadTest&testEnvironment=local"
+	},
+	"benchmarkPreviousTestRun": {
+		"result": true,
+		"deeplink": "http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-previous-test-run?application=Mean&testType=loadTest&testEnvironment=local"
+	},
+	"benchmarkBaselineTestRun": {
+		"result": true,
+		"deeplink": "http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-baseline-test-run?application=Mean&testType=loadTest&testEnvironment=local"
+	}
+}
+```
+If one the assertions has a "result: false", the perfana-gatling-maven-plugin will fail the build and print the reason for the failure to the build log:
+
+```
+[ERROR] Failed to execute goal qa.perfana:perfana-gatling-maven-plugin:0.0.12:integration-test (default-cli) on project gatling-mean: One or more Perfana assertions are failing: 
+[ERROR] Requirements failed: http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-143119/requirements?application=Mean&testType=loadTest&testEnvironment=local
+
 ```
 
-Perfana will automatically do two test run comparisons after a test run has finished:
+## Jenkins setup
 
-* Comparison to the previous test run: this will provide you with feedback on performance impact of the latest changes of your application.
-* Comparison to a baseline test run: you can specify a test run as a baseline to compare future test runs against. 
+The demo environment includes a Jenkins instance containing a demo pipeline job. This job can be found at
 
-While the test is running we will set the first test run as baseline:
+```
+http://localhost:8080/job/PERFANA-GATLING-DEMO/
+```
 
-* Use the application filter to select application "Mean"
-* Click the "edit apllication" icon
-* Select the baseline test run for environment "local" from the drop down list
-
- ![Edit application](assets/images/edit-application.png)
+Click "configure" to see a simple example of how to trigger a Gatling script from a Jenkins pipeline groovy script.
 
 
-When the running test has finished, you will see additional benchmark results in the test run summary. In this case the baseline test run == previous test run, so let's start a third test run.
+To check out the Jenkins-Perfana integration run the build a few times. The tests will show up in Perfana under test environment "acc" and the Jenkins build ID will be used as test run ID. 
 
-If you drill down to the comparison results you can also do a visual check by clicking on the "eye" icon. That might help you to determine "false negatives". Also, it is possible to edit the KPI's by clicking the "pencil" icon. 
+When the run has finished you will see a new property in the test run summary view: CI build result url
+You can use this url to deeplink from Perfana to the Jenkins build results page.  
 
-> When KPI's are updated, Perfana will automatically re-evaluate them for all test runs!
 
-## Trends
-
-Once you have defined one or more KPI's Perfana can automatically create trend graphs for those KPI's. This requires an InfluxDb instance to store the trend data and a Grafana instance to host the Perfana trends dashboard.   
-   
-To view trends:
-
-* Click "Applications" in the side menu
-* Use the filters to select application "Mean", environment "local" and test type "loadTest"
-* Click on the "Trends" tab
-
- ![Trends](assets/images/trends.png)
-
-You can use the presets to view specific time frames for KPI's or choose "View all" to customise your trends view. The vertical lines in the graphs mark the test runs, if you hover the bottom of those markers the test run ID will show. 
-
-If, for some reason, Perfana failed to write the trend points to InfluxDb you can trigger this manually bij clicking "Write trend points".
-
+[Home](index.md) 
+[Previous exercise](exercise-10.md) 
