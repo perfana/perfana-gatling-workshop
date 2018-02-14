@@ -17,7 +17,7 @@
         <perfana-gatling-maven-plugin.version>0.0.12</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
-        <perfanaUrl>http://localhost:3000</perfanaUrl>
+        <perfanaUrl>http://perfana:3000</perfanaUrl>
 
         <!-- Default Simulation class  -->
         <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
@@ -203,7 +203,7 @@
             <activeByDefault>false</activeByDefault>
         </activation>
         <properties>
-            <targetBaseUrl>https://acc.example.com</targetBaseUrl>
+            <targetBaseUrl>http://mean:3000</targetBaseUrl>
             <testEnvironment>acc</testEnvironment>
         </properties>
     </profile>
