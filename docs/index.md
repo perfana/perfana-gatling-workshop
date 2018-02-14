@@ -35,7 +35,7 @@ Please clone this repository and follow the instructions.
 
 ### Gatling
 
-[exercise 1: Maven archetype](exercise-1.md) 
+[exercise 1: Maven set up](exercise-1.md) 
 
 [exercise 2: Recording script with Gatling recorder](exercise-2.md)
 
