@@ -83,7 +83,7 @@ The perfana-gatling-maven-plugin will inform the Perfana dashboard via a REST AP
 
 ```xml
    <!-- Perfana url  -->
-   <perfanaUrl>http://localhost:3000</perfanaUrl>
+   <perfanaUrl>http://localhost:4000</perfanaUrl>
 ``` 
 > In our test setup, Perfana runs at localhost, port 3000
 

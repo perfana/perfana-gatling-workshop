@@ -21,15 +21,15 @@ The consolidated test run results are exposed via a REST API by Perfana. The res
 {
 	"requirements": {
 		"result": false,
-		"deeplink": "http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-112643/requirements?application=Mean&testType=loadTest&testEnvironment=local"
+		"deeplink": "http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-112643/requirements?application=Mean&testType=loadTest&testEnvironment=local"
 	},
 	"benchmarkPreviousTestRun": {
 		"result": true,
-		"deeplink": "http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-previous-test-run?application=Mean&testType=loadTest&testEnvironment=local"
+		"deeplink": "http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-previous-test-run?application=Mean&testType=loadTest&testEnvironment=local"
 	},
 	"benchmarkBaselineTestRun": {
 		"result": true,
-		"deeplink": "http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-baseline-test-run?application=Mean&testType=loadTest&testEnvironment=local"
+		"deeplink": "http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-baseline-test-run?application=Mean&testType=loadTest&testEnvironment=local"
 	}
 }
 ```
@@ -37,7 +37,7 @@ If one the assertions has a "result: false", the perfana-gatling-maven-plugin wi
 
 ```
 [ERROR] Failed to execute goal qa.perfana:perfana-gatling-maven-plugin:0.0.12:integration-test (default-cli) on project gatling-mean: One or more Perfana assertions are failing: 
-[ERROR] Requirements failed: http://localhost:3000/testrun/Mean-1.0-loadTest-local-20180214-143119/requirements?application=Mean&testType=loadTest&testEnvironment=local
+[ERROR] Requirements failed: http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-143119/requirements?application=Mean&testType=loadTest&testEnvironment=local
 
 ```
 

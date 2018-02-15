@@ -4,10 +4,10 @@
 
 # exercise 9: View test results in Perfana 
 
-If all went according to plan you now have a load test running against the Mean demo app running at localhost port 3333. Let's op the Perfana dashboard at
+If all went according to plan you now have a load test running against the Mean demo app running at localhost port 3333. Let's open the Perfana dashboard at
 
 ```xml
-http://localhost:3000
+http://localhost:4000
 ```  
 
 First sign in with user: admin@example.com, password: admin.
@@ -21,7 +21,7 @@ You should see a running test:
 Now let us link some Grafana dashboards to display the test results. The demo environment comes with a Grafana instance with some preconfigured dashboards. You can access this Grafana instance with user/pwd foobar/foobar
 
 ```
-http://localhost:4000 
+http://localhost:3000 
 ```
 When you click the "Home" button in the top left of the screen you can see a number of dashboards. To link a dashboard from a Grafana instance with Perfana, you just tag it with "Perfana". Then you sync your Grafana instance with Perfana.   
 
