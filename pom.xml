@@ -17,7 +17,7 @@
         <perfana-gatling-maven-plugin.version>0.0.12</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
-        <perfanaUrl>http://localhost:3000</perfanaUrl>
+        <perfanaUrl>http://localhost:4000</perfanaUrl>
 
         <!-- Default Simulation class  -->
         <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
@@ -235,8 +235,8 @@
             </activation>
             <properties>
                 <testType>loadTest</testType>
-                <initialUsersPerSecond>0.5</initialUsersPerSecond>
-                <targetUsersPerSecond>1</targetUsersPerSecond>
+                <initialUsersPerSecond>0.1</initialUsersPerSecond>
+                <targetUsersPerSecond>0.2</targetUsersPerSecond>
                 <rampupTimeInSeconds>60</rampupTimeInSeconds>
                 <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
