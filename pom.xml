@@ -235,8 +235,8 @@
             </activation>
             <properties>
                 <testType>loadTest</testType>
-                <initialUsersPerSecond>0.5</initialUsersPerSecond>
-                <targetUsersPerSecond>1</targetUsersPerSecond>
+                <initialUsersPerSecond>0.1</initialUsersPerSecond>
+                <targetUsersPerSecond>0.2</targetUsersPerSecond>
                 <rampupTimeInSeconds>60</rampupTimeInSeconds>
                 <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
