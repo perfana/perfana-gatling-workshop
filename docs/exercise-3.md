@@ -260,7 +260,7 @@ That should help you find the root cause of the script failing! We will fix the 
   
 ## Result
 
-If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/exercise-3)  
+If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/workshop/exercise-3)  
    
  [Home](index.md) 
  [Previous exercise](exercise-2.md) 

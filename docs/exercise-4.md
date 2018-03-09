@@ -141,7 +141,7 @@ In the next exercise we will use "checks" and "conditional execution" to accompl
 
 ## Result
 
-If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/exercise-4)  
+If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/workshop/exercise-4)  
 
 
 

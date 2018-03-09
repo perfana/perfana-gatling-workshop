@@ -121,7 +121,7 @@ In our next exercise we will have a look at the test results in Perfana!
 
 ## Result
 
-If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/exercise-8)  
+If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/workshop/exercise-8)  
 
 
 [Home](index.md) 

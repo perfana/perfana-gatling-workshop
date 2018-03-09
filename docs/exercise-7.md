@@ -269,7 +269,7 @@ Log the session variables:
 
 ## Result
 
-If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/exercise-7)  
+If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/workshop/exercise-7)  
 
 
 [Home](index.md) 

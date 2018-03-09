@@ -179,7 +179,7 @@ Now add the user action to Scenarios.scala, set loglevel to TRACE and see if you
 
 ## Result
 
-If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/exercise-6)  
+If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/workshop/exercise-6)  
 
 
 [Home](index.md) 

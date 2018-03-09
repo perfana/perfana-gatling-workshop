@@ -144,7 +144,7 @@ In SignIn.scala add
 Now check what happens when you run the script some iterations with both users that have signed up already and users that have not signed up yet!
 ## Result
 
-If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/exercise-5)  
+If you were not able to succeed with the steps described above you find the end result [here](https://github.com/perfana/perfana-gatling-workshop/tree/workshop/exercise-5)  
 
 
 [Home](index.md) 
