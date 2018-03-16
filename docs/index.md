@@ -57,7 +57,9 @@ Please clone this repository and follow the instructions.
 
 [exercise 10: Adding Key Performance Indicators](exercise-10.md)
 
+[exercise 11: Test run comparison & reports](exercise-11.md)
+
 ## Continuous performance validation
 
-[exercise 11: Continuous performance validation](exercise-11.md)
+[exercise 12: Continuous performance validation](exercise-12.md)
 

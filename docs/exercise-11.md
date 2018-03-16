@@ -1,62 +1,64 @@
 [Home](index.md) 
 [Previous exercise](exercise-10.md) 
+[Next exercise](exercise-12.md)  
+
   
 
-# Continuous performance validation 
+# Test run comparison
 
-To setup your continuous performance validation you can include a load test in your continuous integration pipeline. The perfana-gatling-maven-plugin has an option to assert the consolidated KPI results in Perfana and pass or fail a build based on this assertion.
-  
-This adds feedback on performance of an application to the feedback loop, allowing developers to act immediately if a Key Performance Indicator is not up to par for a build due to the latest code changes. On the other hand, if a build passes, the team knows that the application still adheres to the configured KPI's and can continue developing without the need to look into the load test results.          
+Apart from the automated KPI benchmarks it is possible to compare a test runs to any other test run. In the test run summary view, select a test run from the drop down list. You can choose from running the KPI benchmark comparison to this test run or running a full test run comparison.
 
-## Perfana-gatling-maven-plugin configuration
+![Test run comaprison](assets/images/test-run-comparison.png)
+             
+> If Perfana cannot match any targets for a metric between two test runs, it will compare the average value for all targets!
+ 
+# Test run reporting
 
-By using the "assert-results" profile the perfana-gatling-maven-plugin will get the consolidated results for a test run after the test run has finished.
-
-```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,test-type-load,assert-results
-```
-The consolidated test run results are exposed via a REST API by Perfana. The response will look something like this
-
-```json
-{
-	"requirements": {
-		"result": false,
-		"deeplink": "http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-112643/requirements?application=Mean&testType=loadTest&testEnvironment=local"
-	},
-	"benchmarkPreviousTestRun": {
-		"result": true,
-		"deeplink": "http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-previous-test-run?application=Mean&testType=loadTest&testEnvironment=local"
-	},
-	"benchmarkBaselineTestRun": {
-		"result": true,
-		"deeplink": "http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-112643/benchmarks/compared-to-baseline-test-run?application=Mean&testType=loadTest&testEnvironment=local"
-	}
-}
-```
-If one the assertions has a "result: false", the perfana-gatling-maven-plugin will fail the build and print the reason for the failure to the build log:
-
-```
-[ERROR] Failed to execute goal qa.perfana:perfana-gatling-maven-plugin:0.0.12:integration-test (default-cli) on project gatling-mean: One or more Perfana assertions are failing: 
-[ERROR] Requirements failed: http://localhost:4000/testrun/Mean-1.0-loadTest-local-20180214-143119/requirements?application=Mean&testType=loadTest&testEnvironment=local
-
-```
-
-## Jenkins setup
-
-The demo environment includes a Jenkins instance containing a demo pipeline job. This job can be found at
-
-```
-http://localhost:8080/job/PERFANA-GATLING-DEMO/
-```
-
-Click "configure" to see a simple example of how to trigger a Gatling script from a Jenkins pipeline groovy script.
+If you share load test results with stakeholders, it is usually a good idea to summarize the results in a report with relevant graphs and information only. Perfana allows you to generate a report for a test run automatically based on a configured template. 
 
 
-To check out the Jenkins-Perfana integration run the build a few times. The tests will show up in Perfana under test environment "acc" and the Jenkins build ID will be used as test run ID. 
+## Configure report template
 
-When the run has finished you will see a new property in the test run summary view: "CI build result"
-You can use this url to deeplink from Perfana to the Jenkins build results page.  
+To configure a report template, follow these steps:
 
+* Click "Applications" in the side menu
+* Use the filters to select application "Mean", environment "local" and test type "loadTest"   
+* Open the "Report specification" tab
+* Click "Add panel"
+* Select dashboard and panel. You can add a default annotation to save yourself some time :-)
+
+![Add panel 1 to report](assets/images/report-add-panel-1.png)
+
+* Add another panel
+
+![Add panel 2 to report](assets/images/report-add-panel-2.png)
+
+* Using the arrows you can determine the order of the panel in the report.
+
+
+## Generate report
+
+Once you have created a report template, you can generate a report for a test run from the test run summary view by clicking "create report" in the "Report" section. 
+
+![Generate report](assets/images/generate-report.png)
+
+
+The generated report contains the following sections:
+
+* Test run information / meta data
+* Links to the Grafana snapshots for the test run
+* The consolidated requirement results for the test run. You can click to drill down to a more detailed results.
+* The panels configured in the report template
+
+For each panel is displayed:
+
+* A graph in PNG format. You can use the icon in the top left corner to toggle to an interactive version of the graph. Use the icon in the top right corner to open a full screen interactive graph in Grafana.
+* If a KPI requirement has been configured for the panel, the asserted results are displayed. Click to see more details.
+* If provided, the default annotation is displayed. You can click the annotation to update it.  
+
+
+![Report panel](assets/images/report-panel.png)
 
 [Home](index.md) 
 [Previous exercise](exercise-10.md) 
+[Next exercise](exercise-12.md)  
