@@ -154,7 +154,7 @@ In setup/Scenarios.scala add the modules to the "acceptanceTestScenario" and "de
 
 ## Http protocol
 
-In Gatling you use [httpProtocol](https://gatling.io/docs/current/http/http_protocol/) to bootstrap your test script. Any property you configure in httpPrototcol will apply to all requests in the scenario. In the template script, the httpProtocol is configured in /home/daniel/workspace/AH/gatling-mean/src/test/scala/qa/perfana/mean/gatling/configuration/Configuration.scala. There is a separate httpProtocol for running the script in debug mode, in case you want to use a different setup while debugging. We will take the configuration created by the Gatling recorder and make some modifications:
+In Gatling you use [httpProtocol](https://gatling.io/docs/current/http/http_protocol/) to bootstrap your test script. Any property you configure in httpPrototcol will apply to all requests in the scenario. In the template script, the httpProtocol is configured in /gatling-mean/src/test/scala/qa/perfana/mean/gatling/configuration/Configuration.scala. There is a separate httpProtocol for running the script in debug mode, in case you want to use a different setup while debugging. We will take the configuration created by the Gatling recorder and make some modifications:
 * We replace the baseUrl, the root for all relative urls used in the script, to a variable that is set via a Maven profile. This is used to easily switch between environments  when running the script. As you can see, this has been done in the generated template script already.
 * We remove the Blacklist from inferHTMLResources, this will make the script download any static resources found in the application HTML. To prevent Gatling from reporting response times for each static resource, we'll add ".silentResources". We add a whitelist section to prevent the script from downloading any resources not coming from our host/domain.  
 * In the baseHttpDebugProtocol we will add a extraInfoExtractor that can help us debug issues.  
@@ -210,7 +210,7 @@ It's time now to give it a spin! The template script uses a fork of the [gatling
 
 A short explanation:
 
-The script can be configures with three types of profiles:
+The script can be configured with three types of profiles:
 * Workload profiles: to configure the workload of the test
 * Test environment profiles: to configure the environment to use for the test
 * "special profiles": to trigger some specific script behavior, e.g. to run in debug mode, use a proxy.
