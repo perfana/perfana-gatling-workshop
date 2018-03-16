@@ -47,7 +47,7 @@ The recorded script can be found in the /user-files folder in your Gatling insta
 * data
 * simulations
 
-In the simulations directory file called SignUp.scala can be found. Create a directory "recordings" in the root of your script and copy the file there. We will use this file in the next exercise. 
+In the simulations directory file called SignUp.scala can be found. Create a directory "recordings" in the root of your project and copy the file there. We will use this file in the next exercise. 
 The Gatling recorder also created a file in the "bodies" directory, "SignUp_000n_request.txt". Copy this file to the /src/test/resources/request-bodies directory in your template script and rename it to "SignUp.txt".
 
 Now repeat these steps for the user action "Sign in", where you sign in with the user you just created. 
