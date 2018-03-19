@@ -23,6 +23,8 @@ It does NOT cover:
 * JDK8 installed
 * Maven installed
 * An IDE with Scala support, for instance [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+* Gatling bundle installed, get instructions [here](https://gatling.io/docs/current/quickstart/)
+
 
 
 ## Setting up your environment
