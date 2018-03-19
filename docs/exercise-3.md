@@ -133,7 +133,7 @@ object  SignUp{
 
 Now we have two modules, let's see how to put them together in a scenario.
 
-In setup/Scenarios.scala add the modules to the "acceptanceTestScenario" and "debugScenario"
+In setup/Scenarios.scala replace the modules in the "acceptanceTestScenario" and "debugScenario" with the modules we have just created.
 
 ```scala
  /**
