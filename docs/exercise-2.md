@@ -22,6 +22,8 @@ In this exercise we will use the Gatling recorder to record some user actions. W
 * In the black list section, click "No static resources"
 * Click "Start!"
 * Configure your browser to use a proxy at localhost:8000
+
+> For Windows users: Disable you automatic proxy configuration if enabled and use manual configuration to set proxy to "localhost", port 8000. Uncheck the option to bypass local addresses.
 * In the Gatling recorder add a tag named "Home"
 * In your browser, open the homepage of the Mean demo app
 
