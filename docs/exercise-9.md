@@ -54,7 +54,9 @@ The test run summary view has a number of sections:
 * Test run information: some meta data for the test run. It is possible to add annotations here.
 * Grafana dashboard links: these links will deeplink you into the Grafana dashboards
 * Grafana snapshots: Perfana uses the [Grafana snapshot feature](http://docs.grafana.org/reference/sharing/#dashboard-snapshot) to store snapshots of test run dashboards. More on snapshots later. 
-* Benchmarks: This section show the benchmark results of the configured KPI's. In the next exercise we will look into this. 
+* Benchmarks: This section show the benchmark results of the configured KPI's. In the next exercise we will look into this.
+* Report: Link to a test run report, in exercise 11 we will see how to generate a report.
+* Manage: delete a test run or set it as baseline test run.  
   
 ## Snapshots
 
