@@ -10,8 +10,6 @@ If all went according to plan you now have a load test running against the Mean 
 http://localhost:4000
 ```  
 
-First sign in with user: admin@example.com, password: admin.
-
 You should see a running test:
 
 
@@ -23,9 +21,11 @@ Now let us link some Grafana dashboards to display the test results. The demo en
 ```
 http://localhost:3000 
 ```
-When you click the "Home" button in the top left of the screen you can see a number of dashboards. To link a dashboard from a Grafana instance with Perfana, you just tag it with "Perfana". Then you sync your Grafana instance with Perfana.   
-
-If you followed the [steps how to setup the demo environment](https://github.com/perfana/perfana-test-env/blob/master/README.md), you have already synced the dashboards once.
+When you click the "Home" button in the top left of the screen you can see a number of dashboards. To link a dashboard from a Grafana instance with Perfana, you just tag it with "Perfana". Then you sync your Grafana instance with Perfana by taking the following steps:
+   
+* Sign in with user/password admin@example.com/admin
+* Click "Grafana configuration" in the sidebar
+* Click  "Sync all Grafana instance dashboards" (refresh icon). This should sync Perfana with the Grafana container running at ```localhost:3000```. 
 
 > The [Grafana templating](http://docs.grafana.org/reference/templating/) variable names and values are stored at the moment the dashboards are synced. Sometimes you need to refresh a dashboard in the Grafana view to update te values. In our case we will use the "Gatling" and "System" dashboard, so please sync those by clicking on the "refresh" icon in the dashboard row.   
 
