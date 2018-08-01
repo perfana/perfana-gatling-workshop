@@ -94,13 +94,13 @@ The perfana-gatling-maven-plugin will inform the Perfana dashboard via a REST AP
 ```
 > The configured application name will be used in Perfana to store all test runs. The applicationRelease can also be set dynamically by Maven or overridden via Jenkins. 
 
-In the gatling.conf file (/src/tst/resources) we need to configure the Graphite writer to send data to our Graphite instance, listening on localhost, port 2003.
+In the gatling.conf file (/src/test/resources) we need to configure the Graphite writer to send data to our Graphite instance, listening on localhost, port 2004.
 
 ```
  graphite {
       #light = false              # only send the all* stats
       host = "localhost"
-      port = 2003
+      port = 2004
       protocol = "tcp"           # The protocol used to send data to Carbon (currently supported : "tcp", "udp")
       rootPathPrefix = "gatling2" # The common prefix of all metrics sent to Graphite
       #bufferSize = 8192          # GraphiteDataWriter's internal data buffer size, in bytes
