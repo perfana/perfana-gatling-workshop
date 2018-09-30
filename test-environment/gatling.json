@@ -1,0 +1,756 @@
+{
+    "dashboard": {
+        "__inputs": [
+            {
+                "description": "",
+                "label": "influxdb",
+                "name": "DS_INFLUXDB",
+                "pluginId": "influxdb",
+                "pluginName": "InfluxDB",
+                "type": "datasource"
+            }
+        ],
+        "__requires": [
+            {
+                "id": "grafana",
+                "name": "Grafana",
+                "type": "grafana",
+                "version": "4.5.1"
+            },
+            {
+                "id": "graph",
+                "name": "Graph",
+                "type": "panel",
+                "version": ""
+            },
+            {
+                "id": "influxdb",
+                "name": "InfluxDB",
+                "type": "datasource",
+                "version": "1.0.0"
+            }
+        ],
+        "annotations": {
+            "list": []
+        },
+        "editable": true,
+        "gnetId": null,
+        "graphTooltip": 0,
+        "hideControls": false,
+        "id": null,
+        "links": [],
+        "refresh": false,
+        "rows": [
+            {
+                "collapse": false,
+                "height": 250,
+                "panels": [
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "dashLength": 10,
+                        "dashes": false,
+                        "datasource": "${DS_INFLUXDB}",
+                        "editable": true,
+                        "error": false,
+                        "fill": 1,
+                        "grid": {},
+                        "id": 7,
+                        "interval": "10s",
+                        "legend": {
+                            "avg": false,
+                            "current": false,
+                            "max": false,
+                            "min": false,
+                            "show": true,
+                            "total": false,
+                            "values": false
+                        },
+                        "lines": true,
+                        "linewidth": 2,
+                        "links": [],
+                        "minSpan": null,
+                        "nullPointMode": "connected",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "spaceLength": 10,
+                        "span": 3,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "alias": "$tag_request",
+                                "dsType": "influxdb",
+                                "fields": [
+                                    {
+                                        "func": "mean",
+                                        "name": "value"
+                                    }
+                                ],
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "request"
+                                        ],
+                                        "type": "tag"
+                                    }
+                                ],
+                                "measurement": "gatling2",
+                                "orderByTime": "ASC",
+                                "policy": "default",
+                                "query": "SELECT \"count\" / 10 FROM \"gatling2\" WHERE \"request\" != 'allRequests' AND \"status\" = 'ko' AND \"simulation\" =~ /^$simulation$/ AND $timeFilter GROUP BY \"request\"",
+                                "rawQuery": true,
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "count"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": [
+                                    {
+                                        "key": "request",
+                                        "operator": "!=",
+                                        "value": "allRequests"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "status",
+                                        "operator": "=",
+                                        "value": "ko"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "simulation",
+                                        "operator": "=~",
+                                        "value": "/^$simulation$/"
+                                    }
+                                ]
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "Failed transactions per second",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "cumulative"
+                        },
+                        "transparent": false,
+                        "type": "graph",
+                        "xaxis": {
+                            "buckets": null,
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": 0,
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": true
+                            }
+                        ]
+                    },
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "dashLength": 10,
+                        "dashes": false,
+                        "datasource": "${DS_INFLUXDB}",
+                        "editable": true,
+                        "error": false,
+                        "fill": 1,
+                        "grid": {},
+                        "id": 3,
+                        "interval": "10s",
+                        "legend": {
+                            "avg": false,
+                            "current": false,
+                            "max": false,
+                            "min": false,
+                            "show": true,
+                            "total": false,
+                            "values": false
+                        },
+                        "lines": true,
+                        "linewidth": 2,
+                        "links": [],
+                        "minSpan": null,
+                        "nullPointMode": "connected",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "spaceLength": 10,
+                        "span": 3,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "alias": "$tag_request",
+                                "dsType": "influxdb",
+                                "fields": [
+                                    {
+                                        "func": "mean",
+                                        "name": "value"
+                                    }
+                                ],
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "request"
+                                        ],
+                                        "type": "tag"
+                                    }
+                                ],
+                                "measurement": "gatling2",
+                                "orderByTime": "ASC",
+                                "policy": "default",
+                                "query": "SELECT \"count\" / 10 FROM \"gatling2\" WHERE \"request\" != 'allRequests' AND \"status\" = 'ok' AND \"simulation\" =~ /^$simulation$/ AND $timeFilter GROUP BY \"request\"",
+                                "rawQuery": true,
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "count"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": [
+                                    {
+                                        "key": "request",
+                                        "operator": "!=",
+                                        "value": "allRequests"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "status",
+                                        "operator": "=",
+                                        "value": "ok"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "simulation",
+                                        "operator": "=~",
+                                        "value": "/^$simulation$/"
+                                    }
+                                ]
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "Passed transactions per second",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "cumulative"
+                        },
+                        "transparent": false,
+                        "type": "graph",
+                        "xaxis": {
+                            "buckets": null,
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": 0,
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": true
+                            }
+                        ]
+                    },
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "dashLength": 10,
+                        "dashes": false,
+                        "datasource": "${DS_INFLUXDB}",
+                        "editable": true,
+                        "error": false,
+                        "fill": 1,
+                        "grid": {},
+                        "id": 5,
+                        "interval": "10s",
+                        "legend": {
+                            "avg": false,
+                            "current": false,
+                            "max": false,
+                            "min": false,
+                            "show": true,
+                            "total": false,
+                            "values": false
+                        },
+                        "lines": true,
+                        "linewidth": 2,
+                        "links": [],
+                        "nullPointMode": "connected",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "spaceLength": 10,
+                        "span": 3,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "alias": "error",
+                                "dsType": "influxdb",
+                                "fields": [
+                                    {
+                                        "func": "mean",
+                                        "name": "value"
+                                    }
+                                ],
+                                "groupBy": [],
+                                "measurement": "gatling2",
+                                "orderByTime": "ASC",
+                                "policy": "default",
+                                "query": "SELECT \"count\" / 10 FROM \"gatling2\" WHERE \"request\" = 'allRequests' AND \"status\" = 'ko' AND $timeFilter",
+                                "rawQuery": false,
+                                "refId": "B",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "count"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": [
+                                    {
+                                        "key": "request",
+                                        "operator": "=",
+                                        "value": "allRequests"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "status",
+                                        "operator": "=",
+                                        "value": "ko"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "simulation",
+                                        "operator": "=~",
+                                        "value": "/^$simulation$/"
+                                    }
+                                ]
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "Total failed transactions per second",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "cumulative"
+                        },
+                        "type": "graph",
+                        "xaxis": {
+                            "buckets": null,
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": 0,
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": true
+                            }
+                        ]
+                    },
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "dashLength": 10,
+                        "dashes": false,
+                        "datasource": "${DS_INFLUXDB}",
+                        "editable": true,
+                        "error": false,
+                        "fill": 1,
+                        "grid": {},
+                        "id": 6,
+                        "interval": "10s",
+                        "legend": {
+                            "avg": false,
+                            "current": false,
+                            "max": false,
+                            "min": false,
+                            "show": true,
+                            "total": false,
+                            "values": false
+                        },
+                        "lines": true,
+                        "linewidth": 2,
+                        "links": [],
+                        "minSpan": null,
+                        "nullPointMode": "connected",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "spaceLength": 10,
+                        "span": 3,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "alias": "pass",
+                                "dsType": "influxdb",
+                                "fields": [
+                                    {
+                                        "func": "mean",
+                                        "name": "value"
+                                    }
+                                ],
+                                "groupBy": [],
+                                "measurement": "gatling2",
+                                "orderByTime": "ASC",
+                                "policy": "default",
+                                "query": "SELECT \"count\" / 10 FROM \"gatling2\" WHERE \"request\" = 'allRequests' AND \"status\" = 'ok' AND \"simulation\" =~ /^$simulation$/ AND $timeFilter",
+                                "rawQuery": true,
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "count"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": [
+                                    {
+                                        "key": "request",
+                                        "operator": "=",
+                                        "value": "allRequests"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "status",
+                                        "operator": "=",
+                                        "value": "ok"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "simulation",
+                                        "operator": "=~",
+                                        "value": "/^$simulation$/"
+                                    }
+                                ]
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "Total passed transactions per second",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "cumulative"
+                        },
+                        "transparent": false,
+                        "type": "graph",
+                        "xaxis": {
+                            "buckets": null,
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": 0,
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": true
+                            }
+                        ]
+                    }
+                ],
+                "repeat": null,
+                "repeatIteration": null,
+                "repeatRowId": null,
+                "showTitle": true,
+                "title": "Load",
+                "titleSize": "h6"
+            },
+            {
+                "collapse": false,
+                "height": 486,
+                "panels": [
+                    {
+                        "aliasColors": {},
+                        "bars": false,
+                        "dashLength": 10,
+                        "dashes": false,
+                        "datasource": "${DS_INFLUXDB}",
+                        "editable": true,
+                        "error": false,
+                        "fill": 1,
+                        "grid": {},
+                        "id": 4,
+                        "interval": "10s",
+                        "legend": {
+                            "avg": false,
+                            "current": false,
+                            "hideEmpty": false,
+                            "max": false,
+                            "min": false,
+                            "show": true,
+                            "total": false,
+                            "values": false
+                        },
+                        "lines": true,
+                        "linewidth": 2,
+                        "links": [],
+                        "nullPointMode": "connected",
+                        "percentage": false,
+                        "pointradius": 5,
+                        "points": false,
+                        "renderer": "flot",
+                        "seriesOverrides": [],
+                        "spaceLength": 10,
+                        "span": 12,
+                        "stack": false,
+                        "steppedLine": false,
+                        "targets": [
+                            {
+                                "alias": "$tag_request",
+                                "dsType": "influxdb",
+                                "fields": [
+                                    {
+                                        "func": "mean",
+                                        "name": "value"
+                                    }
+                                ],
+                                "groupBy": [
+                                    {
+                                        "params": [
+                                            "request"
+                                        ],
+                                        "type": "tag"
+                                    }
+                                ],
+                                "hide": false,
+                                "measurement": "gatling2",
+                                "orderByTime": "ASC",
+                                "policy": "default",
+                                "query": "SELECT \"percentiles95\" FROM \"gatling2\" WHERE \"request\" <> 'allRequests' AND $timeFilter GROUP BY \"request\"",
+                                "refId": "A",
+                                "resultFormat": "time_series",
+                                "select": [
+                                    [
+                                        {
+                                            "params": [
+                                                "percentiles99"
+                                            ],
+                                            "type": "field"
+                                        }
+                                    ]
+                                ],
+                                "tags": [
+                                    {
+                                        "key": "request",
+                                        "operator": "!=",
+                                        "value": "allRequests"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "simulation",
+                                        "operator": "=~",
+                                        "value": "/^$simulation$/"
+                                    },
+                                    {
+                                        "condition": "AND",
+                                        "key": "status",
+                                        "operator": "=",
+                                        "value": "ok"
+                                    }
+                                ]
+                            }
+                        ],
+                        "thresholds": [],
+                        "timeFrom": null,
+                        "timeShift": null,
+                        "title": "Transaction response times 99 percentile",
+                        "tooltip": {
+                            "shared": true,
+                            "sort": 0,
+                            "value_type": "cumulative"
+                        },
+                        "type": "graph",
+                        "xaxis": {
+                            "buckets": null,
+                            "mode": "time",
+                            "name": null,
+                            "show": true,
+                            "values": []
+                        },
+                        "yaxes": [
+                            {
+                                "format": "ms",
+                                "logBase": 1,
+                                "max": null,
+                                "min": 0,
+                                "show": true
+                            },
+                            {
+                                "format": "short",
+                                "logBase": 1,
+                                "max": null,
+                                "min": null,
+                                "show": true
+                            }
+                        ]
+                    }
+                ],
+                "repeat": null,
+                "repeatIteration": null,
+                "repeatRowId": null,
+                "showTitle": true,
+                "title": "Performance",
+                "titleSize": "h6"
+            }
+        ],
+        "schemaVersion": 14,
+        "style": "dark",
+        "tags": [
+            "Perfana",
+            "Gatling",
+            "InfluxDb"
+        ],
+        "templating": {
+            "list": [
+                {
+                    "allValue": null,
+                    "current": {},
+                    "datasource": "${DS_INFLUXDB}",
+                    "hide": 0,
+                    "includeAll": false,
+                    "label": null,
+                    "multi": true,
+                    "name": "simulation",
+                    "options": [],
+                    "query": "SHOW TAG VALUES WITH KEY = \"simulation\"",
+                    "refresh": 1,
+                    "regex": "",
+                    "sort": 1,
+                    "tagValuesQuery": "",
+                    "tags": [],
+                    "tagsQuery": "",
+                    "type": "query",
+                    "useTags": false
+                }
+            ]
+        },
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "timepicker": {
+            "now": true,
+            "refresh_intervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "2h",
+                "1d"
+            ],
+            "time_options": [
+                "5m",
+                "15m",
+                "1h",
+                "6h",
+                "12h",
+                "24h",
+                "2d",
+                "7d",
+                "30d"
+            ]
+        },
+        "timezone": "browser",
+        "title": "Gatling",
+        "version": 2
+    },
+    "inputs": [
+        {
+            "name": "DS_INFLUXDB",
+            "pluginId": "influxdb",
+            "type": "datasource",
+            "value": "influxdb gatling"
+        }
+    ],
+    "overwrite": true
+}

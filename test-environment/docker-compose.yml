@@ -1,0 +1,114 @@
+version: "3"
+
+services:
+  telegraf:
+    image: cgeoffroy/telegraf
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+    networks:
+      - my-net
+    volumes:
+      - "./telegraf.conf:/telegraf.conf:ro"
+      - "/sys:/rootfs/sys:ro"
+      - "/proc:/rootfs/proc:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    entrypoint: /bin/sh
+    command: -c "sleep 10s && exec /usr/local/bin/telegraf -config /telegraf.conf"
+
+  graphite:
+    image: dmoll1974/targets-io-graphite
+    ports:
+      - "8070:80"
+      - "2004:2003"
+      - "8125:8125"
+    networks:
+      - my-net
+  influxdb:
+    image: influxdb
+    ports:
+      - "8086:8086"
+      - "2003:2003"
+    environment:
+      INFLUXDB_ADMIN_ENABLED: "true"
+      INFLUXDB_GRAPHITE_ENABLED: "true"
+    networks:
+      - my-net
+    volumes:
+      - "./influxdb.conf:/etc/influxdb/influxdb.conf:ro"
+  grafana:
+    image: "perfana/grafana:dev"
+    depends_on:
+      - influxdb
+    environment:
+      GF_SECURITY_ADMIN_USER: foobar
+      GF_SECURITY_ADMIN_PASSWORD: foobar
+    user: "104"
+    ports:
+      - "3000:3000"
+    networks:
+      - my-net
+  perfana:
+    image: "perfana/perfana:latest"
+    depends_on:
+      - grafana
+      - influxdb
+    environment:
+      MONGO_URL: "mongodb://mongo:27017"
+      ROOT_URL: "http://localhost:4000"
+      METEOR_SETTINGS: '{"isDemo": true,"autoCreateApplications": true,"snapshotExpires": "7776000","perfanaHost":"http://localhost:3000","influxDbHost": "influxdb", "public": {"perfanaHost":"http://localhost:4000","OIDCButtonText": "LDAP Login"}}'
+    ports:
+      - "4000:3000"
+    networks:
+      - my-net
+
+  bootstrap:
+    image: "alpine:latest"
+    depends_on:
+      - grafana
+      - influxdb
+    volumes:
+      - "./bootstrap.sh:/bootstrap.sh:ro"
+      - "./system.json:/system.json:ro"
+      - "./gatling.json:/gatling.json:ro"
+      - "./perfana_trends.json:/perfana_trends.json:ro"
+    networks:
+      - my-net
+    command: /bootstrap.sh
+
+  jenkins:
+    image: perfana/perfana-demo-jenkins
+    ports:
+    - "8080:8080"
+    networks:
+      - my-net
+    depends_on:
+    - mean
+    - influxdb
+
+  mongo:
+    image: mongo:3.0
+    ports:
+    - "27017:27017"
+    networks:
+      - my-net
+
+  mean:
+    image: dmoll1974/targets-io-demo-meanjs
+    ports:
+    - "3333:3000"
+    command: dockerize -wait tcp://mongo:27017
+    networks:
+      - my-net
+    depends_on:
+    - mongo
+    - influxdb
+    environment:
+      DB_1_PORT_27017_TCP_ADDR: "mongo:27017"
+      mem_limit: 512M
+      cpus: 0.5
+
+networks:
+  my-net:
+    driver: bridge
+
