@@ -1,6 +1,6 @@
-# Perfana demo
+# Perfana workshop environment
 
-A `docker-compose` setup to run a `Perfana` demo environment.
+A `docker-compose` setup to run a `Perfana` environment to be used in the Perfana Gatling Workshop.
 
 ## Edit hosts file  
 
@@ -13,7 +13,7 @@ Add these lines to your hosts file
 
 ## Start
 
-* Start all the containers with: `sudo docker-compose up -d`
+* Start all the containers with: `docker-compose up -d`
 
 The end result will be an environment with the following started docker containers:
 
@@ -28,7 +28,7 @@ The end result will be an environment with the following started docker containe
 | telegraf    	|    Metric collection agent 	| -   |
 
 
-## Demo instructions
+## Instructions
 * Open Perfana dashboard at ```http://localhost:4000```
 * Sign in with user/password admin@example.com/admin
 * Click "Grafana configuration" in the sidebar
@@ -36,4 +36,5 @@ The end result will be an environment with the following started docker containe
 
 
 ## Windows users 
-* After running docker-compose up, run bootstrap-windows.sh manually
+* Don't forget to share your drive when Docker asks for it during start up of the containers!
+* Unfortunately the telegraf container does not work on Windows currently
