@@ -2,22 +2,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-   
+
 
     <groupId>qa.perfana</groupId>
     <artifactId>gatling-mean</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
- 
+
         <encoding>UTF-8</encoding>
 
         <!-- dependency versioning -->
         <gatling.version>2.3.0</gatling.version>
-        <perfana-gatling-maven-plugin.version>0.0.12</perfana-gatling-maven-plugin.version>
+        <perfana-gatling-maven-plugin.version>1.0.0</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
-        <perfanaUrl>https://perfana.qa</perfanaUrl>
+        <perfanaUrl>http://localhost:4000</perfanaUrl>
 
         <!-- Default Simulation class  -->
         <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
@@ -56,9 +56,10 @@
         <constantLoadTimeInSeconds>900</constantLoadTimeInSeconds>
 
         <!-- Settings for the Perfana Dashboard -->
+
         <application>Mean</application>
         <applicationRelease>1.0</applicationRelease>
-        
+
     </properties>
 
     <dependencyManagement>
@@ -88,7 +89,7 @@
                     <version>3.0.0</version>
                 </plugin>
                 <plugin>
-                    <groupId>qa.perfana</groupId>
+                    <groupId>io.perfana</groupId>
                     <artifactId>perfana-gatling-maven-plugin</artifactId>
                     <version>${perfana-gatling-maven-plugin.version}</version>
                 </plugin>
@@ -115,7 +116,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>qa.perfana</groupId>
+                <groupId>io.perfana</groupId>
                 <artifactId>perfana-gatling-maven-plugin</artifactId>
                 <configuration>
                     <dataFolder>src/test/resources/data</dataFolder>
@@ -146,8 +147,8 @@
                         <jvmArg>-Ddebug=${debug}</jvmArg>
                         <jvmArg>-DuseProxy=${useProxy}</jvmArg>
                         <jvmArg>-Dgatling.data.graphite.rootPathPrefix=${graphitePrefix}</jvmArg>
-                        <jvmArg>-Xms4g</jvmArg>
-                        <jvmArg>-Xmx4g</jvmArg>
+                        <jvmArg>-Xms512m</jvmArg>
+                        <jvmArg>-Xmx2g</jvmArg>
                         <jvmArg>-Djavax.net.ssl.sessionCacheSize=1000</jvmArg>
                         <jvmArg>-XX:+UseG1GC</jvmArg>
                         <jvmArg>-XX:+ParallelRefProcEnabled</jvmArg>
@@ -162,53 +163,53 @@
     </build>
 
 
-  <!-- ************************************************************************ ==
-  == Below we have defined three sets of profiles, which control the type of    ==
-  == test that will be run and the targeted environment.                        ==
-  == If you wish to run a stress test on acceptance, use:                       ==
-  == mvn perfana-gatling:integration-test -Ptest-type-stress,test-env-acc       ==
-  == ************************************************************************ -->
+    <!-- ************************************************************************ ==
+    == Below we have defined three sets of profiles, which control the type of    ==
+    == test that will be run and the targeted environment.                        ==
+    == If you wish to run a stress test on acceptance, use:                       ==
+    == mvn perfana-gatling:integration-test -Ptest-type-stress,test-env-acc       ==
+    == ************************************************************************ -->
 
     <profiles>
 
-    <!-- Test environment profiles -->
+        <!-- Test environment profiles -->
 
-    <profile>
-        <id>test-env-local</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>http://localhost:3333</targetBaseUrl>
-            <testEnvironment>local</testEnvironment>
-        </properties>
-    </profile>
+        <profile>
+            <id>test-env-local</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <targetBaseUrl>http://localhost:3333</targetBaseUrl>
+                <testEnvironment>local</testEnvironment>
+            </properties>
+        </profile>
 
-   <profile>
-        <id>test-env-tst</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>https://tst.example.com</targetBaseUrl>
-            <testEnvironment>tst</testEnvironment>
-        </properties>
-    </profile>
-
-
-    <profile>
-        <id>test-env-acc</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>https://acc.example.com</targetBaseUrl>
-            <testEnvironment>acc</testEnvironment>
-        </properties>
-    </profile>
+        <profile>
+            <id>test-env-tst</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <targetBaseUrl>https://tst.example.com</targetBaseUrl>
+                <testEnvironment>tst</testEnvironment>
+            </properties>
+        </profile>
 
 
-    <!-- Test type profiles -->
+        <profile>
+            <id>test-env-acc</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <targetBaseUrl>https://acc.example.com</targetBaseUrl>
+                <testEnvironment>acc</testEnvironment>
+            </properties>
+        </profile>
+
+
+        <!-- Test type profiles -->
 
         <profile>
             <id>test-type-stress</id>
@@ -234,15 +235,16 @@
             </activation>
             <properties>
                 <testType>loadTest</testType>
-                <initialUsersPerSecond>1</initialUsersPerSecond>
-                <targetUsersPerSecond>40</targetUsersPerSecond>
-                <rampupTimeInSeconds>600</rampupTimeInSeconds>
-                <constantLoadTimeInSeconds>3600</constantLoadTimeInSeconds>
+                <initialUsersPerSecond>0.1</initialUsersPerSecond>
+                <targetUsersPerSecond>0.2</targetUsersPerSecond>
+                <rampupTimeInSeconds>60</rampupTimeInSeconds>
+                <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
                 <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
                 <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
+
         <profile>
             <id>test-type-endurance</id>
             <activation>
