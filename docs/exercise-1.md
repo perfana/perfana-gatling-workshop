@@ -34,8 +34,8 @@ In a terminal, execute the following command from a directory where you would li
   -Dversion=1.0-SNAPSHOT \
   -Dpackage=qa.perfana.mean \
   -DsimulationClassName=Mean \
-  -DperfanaApplication=Mean \
-  -DperfanaApplicationRelease=1.0   
+  -Dapplication=Mean \
+  -DapplicationRelease=1.0   
 ```
 
 ## Install perfana-gatling-maven-plugin
