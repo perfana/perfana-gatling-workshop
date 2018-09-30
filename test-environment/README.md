@@ -36,4 +36,4 @@ The end result will be an environment with the following started docker containe
 
 
 ## Windows users 
-* After running docker-compose up, run bootstrap.sh manually
+* After running docker-compose up, run bootstrap-windows.sh manually
