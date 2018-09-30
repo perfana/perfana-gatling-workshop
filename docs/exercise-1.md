@@ -38,17 +38,6 @@ In a terminal, execute the following command from a directory where you would li
   -DapplicationRelease=1.0   
 ```
 
-## Install perfana-gatling-maven-plugin
-
-To communicate with Perfana the script will use the perfana-gatling-maven-plugin, a fork from the [gatling-maven-plugin](https://github.com/gatling/gatling-maven-plugin). For our workshop we need to install this plugin locally:
-
-* Clone the perfana-gatling-maven-plugin from [Github](https://github.com/perfana/gatling-maven-plugin)
-* Install the perfana-gatling-maven-plugin
-
-```
-mvn clean install
-```
-
 
 ## Result
 

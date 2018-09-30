@@ -29,8 +29,8 @@ It does NOT cover:
 
 ## Setting up your environment
 
-For your convenience a complete Perfana test / demo environment is available in this repository: [https://github.com/perfana/perfana-test-env](https://github.com/perfana/perfana-test-env)
-Please clone this repository and follow the instructions.
+For your convenience a complete Perfana test / demo environment is available in this repository: [https://github.com/perfana/perfana-gatling-workshop](https://github.com/perfana/perfana-gatling-workshop)
+Please clone this repository and follow the instructions in the readme file in the "test-environment" folder.
 
 
 ## Exercises
