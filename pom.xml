@@ -14,7 +14,7 @@
 
         <!-- dependency versioning -->
         <gatling.version>2.3.0</gatling.version>
-        <perfana-gatling-maven-plugin.version>0.0.12</perfana-gatling-maven-plugin.version>
+        <perfana-gatling-maven-plugin.version>1.0.0</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
         <perfanaUrl>http://perfana:3000</perfanaUrl>
@@ -89,7 +89,7 @@
                     <version>3.0.0</version>
                 </plugin>
                 <plugin>
-                    <groupId>qa.perfana</groupId>
+                    <groupId>io.perfana</groupId>
                     <artifactId>perfana-gatling-maven-plugin</artifactId>
                     <version>${perfana-gatling-maven-plugin.version}</version>
                 </plugin>
@@ -116,7 +116,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>qa.perfana</groupId>
+                <groupId>io.perfana</groupId>
                 <artifactId>perfana-gatling-maven-plugin</artifactId>
                 <configuration>
                     <dataFolder>src/test/resources/data</dataFolder>
