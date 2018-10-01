@@ -16,14 +16,7 @@ services:
     entrypoint: /bin/sh
     command: -c "sleep 10s && exec /usr/local/bin/telegraf -config /telegraf.conf"
 
-  graphite:
-    image: dmoll1974/targets-io-graphite
-    ports:
-      - "8070:80"
-      - "2004:2003"
-      - "8125:8125"
-    networks:
-      - my-net
+ 
   influxdb:
     image: influxdb
     ports:
