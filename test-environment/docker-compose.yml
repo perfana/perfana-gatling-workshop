@@ -61,6 +61,8 @@ services:
       - "4000:3000"
     networks:
       - my-net
+    restart: always
+
 
   bootstrap:
     image: "alpine:latest"
