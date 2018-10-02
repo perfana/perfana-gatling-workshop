@@ -26,10 +26,10 @@ In a terminal, execute the following command from a directory where you would li
 
 ```  
    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -B \
-  -DarchetypeGroupId=qa.perfana \
+  -DarchetypeGroupId=qa.perfana.gatling \
   -DarchetypeArtifactId=perfana-gatling-maven-archetype \
   -DarchetypeVersion=0.0.7 \
-  -DgroupId=qa.perfana.gatling \
+  -DgroupId=qa.perfana \
   -DartifactId=gatling-perfana-archetype \
   -Dversion=1.0-SNAPSHOT \
   -Dpackage=qa.perfana.mean \
