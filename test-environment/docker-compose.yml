@@ -49,7 +49,7 @@ services:
     environment:
       MONGO_URL: "mongodb://mongo:27017"
       ROOT_URL: "http://localhost:4000"
-      METEOR_SETTINGS: '{"isDemo": true,"autoCreateApplications": true,"snapshotExpires": "7776000","perfanaHost":"http://localhost:3000","influxDbHost": "influxdb", "public": {"perfanaHost":"http://localhost:4000","OIDCButtonText": "LDAP Login"}}'
+      METEOR_SETTINGS: '{"isDemo": true,"autoCreateApplications": true,"snapshotExpires": "7776000","perfanaHost":"http://localhost:4000","influxDbHost": "influxdb", "public": {"perfanaHost":"http://localhost:4000","OIDCButtonText": "LDAP Login"}}'
     ports:
       - "4000:3000"
     networks:
