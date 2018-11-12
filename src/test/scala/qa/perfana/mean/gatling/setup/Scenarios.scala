@@ -36,7 +36,7 @@ object Scenarios {
        .feed(UserFeeder.user)
        .exec(Home.userAction)
        .exec(SignIn.userAction)
-//       .exec(CreateArticle.userAction)
+       .exec(CreateArticle.userAction)
        .exec(ListArticles.userAction)
 
 }

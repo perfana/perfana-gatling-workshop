@@ -44,7 +44,7 @@ Now let's have a look at the recorded code.
 .exec(http("request_1")
 .post("/api/articles")
 .headers(headers_1)
-.body(RawFileBody("AddArticle_0001_request.txt"))
+.body(RawFileBody("request-bodies/AddArticle_0001_request.txt"))
 .resources(http("request_2")
 .get("/api/articles/5a7432d506b2c92500707542"),
 http("request_3")
@@ -88,7 +88,7 @@ Like we did earlier, we will add meaningful names to the requests and create a m
     .exec(http("Submit article")
     .post("/api/articles")
     .headers(headers_1)
-    .body(RawFileBody("AddArticle.txt"))
+    .body(RawFileBody("request-bodies/AddArticle.txt"))
     .resources(http("View article")
     .get("/api/articles/5a7432d506b2c92500707542"),
     http("View article HTML")
@@ -143,7 +143,7 @@ In the "Headers" tab you can confirm this is the POST request to submit the arti
     .exec(http("Submit article")
     .post("/api/articles")
     .headers(headers_1)
-    .body(RawFileBody("AddArticle.txt"))
+    .body(RawFileBody("request-bodies/AddArticle.txt"))
     .check(jsonPath("$._id").saveAs("articleId"))
     .resources(http("View article")
     .get("/api/articles/${articleId}"),

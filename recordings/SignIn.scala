@@ -32,7 +32,7 @@ class SignIn extends Simulation {
 		.exec(http("request_2")
 			.post("/api/auth/signin")
 			.headers(headers_2)
-			.body(RawFileBody("SignIn_0002_request.txt")))
+			.body(RawFileBody("request-bodies/SignIn_0002_request.txt")))
 
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 }

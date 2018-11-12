@@ -30,7 +30,7 @@ First, let's have a look at the recorded requests in SignUp.scala
 .exec(http("request_5")
     .post("/api/auth/signup")
     .headers(headers_5)
-    .body(RawFileBody("SignUp_0005_request.txt")))
+    .body(RawFileBody("request-bodies/SignUp_0005_request.txt")))
 ```
 
 * First let's give the requests some meaningful names
@@ -56,7 +56,7 @@ First, let's have a look at the recorded requests in SignUp.scala
 .exec(http("SignUp - Submit")
     .post("/api/auth/signup")
     .headers(headers_5)
-        .body(RawFileBody("SignUp.txt")))
+        .body(RawFileBody("request-bodies/SignUp.txt")))
 ```
 
 ## Create modular script
@@ -127,7 +127,7 @@ object  SignUp{
     .exec(http("SignUp - Submit")
         .post("/api/auth/signup")
         .headers(headers_5)
-        .body(RawFileBody("SignUp.txt")))
+        .body(RawFileBody("request-bodies/SignUp.txt")))
 }
 ```
 

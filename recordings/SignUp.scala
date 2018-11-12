@@ -48,7 +48,7 @@ class SignUp extends Simulation {
 		.exec(http("request_5")
 			.post("/api/auth/signup")
 			.headers(headers_5)
-			.body(RawFileBody("SignUp_0005_request.txt")))
+			.body(RawFileBody("request-bodies/SignUp_0005_request.txt")))
 
 	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 }

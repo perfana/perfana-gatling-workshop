@@ -40,10 +40,10 @@ object ListArticles{
     })
 
     // Bonus
-    .exec(session =>{
-      println("user_id: " + session("user_id").as[String] + " , articleUserId: " + session("articleUserId").as[String])
-      session
-    })
+//    .exec(session =>{
+//      println("user_id: " + session("user_id").as[String] + " , articleUserId: " + session("articleUserId").as[String])
+//      session
+//    })
 
 
     .pause(5)

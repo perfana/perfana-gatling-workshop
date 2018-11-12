@@ -44,7 +44,7 @@ In our use case we will check if user signs in successfully, and if not, do a si
     .exec(http("SignIn - Submit")
     .post("/api/auth/signin")
     .headers(headers_5)
-    .body(ElFileBody("SignIn.txt")))
+    .body(ElFileBody("request-bodies/SignIn.txt")))
  }
 ```
 SignIn.txt
@@ -119,7 +119,7 @@ There are now several ways to make the script do what we want. Since we will nee
 .exec(http("SignIn - Submit")
 .post("/api/auth/signin")
 .headers(headers_5)
-.body(ElFileBody("SignIn.txt")
+.body(ElFileBody("request-bodies/SignIn.txt")
 .check(status.in(200,400))
 .check(jsonPath("$._id").optional.saveAs("user_id"))) 
 ```

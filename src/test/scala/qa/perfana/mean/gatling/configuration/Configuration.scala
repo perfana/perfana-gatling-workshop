@@ -63,7 +63,7 @@ object Configuration {
   }
 
   private val baseHttpProtocol = http
-    .baseURL(Configuration.targetBaseUrl)
+    .baseUrl(Configuration.targetBaseUrl)
     .acceptHeader("text/html")
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
@@ -74,18 +74,18 @@ object Configuration {
 
 
   private val baseHttpDebugProtocol = http
-    .baseURL(Configuration.targetBaseUrl)
+    .baseUrl(Configuration.targetBaseUrl)
     .acceptHeader("text/html")
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
     .userAgentHeader("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36")
     .inferHtmlResources(WhiteList(""".*""" + Configuration.targetBaseUrl + """.*"""))
     .silentResources
-    .extraInfoExtractor(ExtraInfo => {
-      if(ExtraInfo.status == KO)
-        println("httpCode: " + ExtraInfo.response.statusCode + ", body: "+ ExtraInfo.response.body)
-      Nil
-    })
+//    .extraInfoExtractor(ExtraInfo => {
+//      if(ExtraInfo.status == KO)
+//        println("httpCode: " + ExtraInfo.response.statusCode + ", body: "+ ExtraInfo.response.body)
+//      Nil
+//    })
 
 
   def httpDebugProtocol ={

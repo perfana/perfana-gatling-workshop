@@ -104,7 +104,7 @@ object UserFeeder {
     .exec(http("SignUp - Submit")
     .post("/api/auth/signup")
     .headers(headers_5)
-    .body(ElFileBody("signUp.txt")))
+    .body(ElFileBody("request-bodies/signUp.txt")))
     .pause(11)
 
 ```

@@ -37,7 +37,7 @@ class CreateArticle extends Simulation {
 		.exec(http("request_1")
 			.post("/api/articles")
 			.headers(headers_1)
-			.body(RawFileBody("AddArticle_0001_request.txt"))
+			.body(RawFileBody("request-bodies/AddArticle_0001_request.txt"))
 			.resources(http("request_2")
 			.get("/api/articles/5a818407290572240079992a")
 			.headers(headers_2),
