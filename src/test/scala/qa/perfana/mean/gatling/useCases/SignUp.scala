@@ -23,5 +23,5 @@ object  SignUp{
       .exec(http("SignUp - Submit")
         .post("/api/auth/signup")
         .headers(headers_5)
-        .body(ElFileBody("SignUp.txt")))
+        .body(ElFileBody("request-bodies/SignUp.txt")))
 }
