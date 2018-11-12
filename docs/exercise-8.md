@@ -114,7 +114,7 @@ Now let's start a load test!
 > Make sure to disable DEBUG/TRACE in logback.xml when running a test under load!
 
 ```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,test-type-load
+mvn clean perfana-gatling:test -Ptest-env-local,test-type-load
 ```
 
 In our next exercise we will have a look at the test results in Perfana!
