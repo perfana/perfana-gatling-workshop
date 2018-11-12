@@ -30,7 +30,7 @@ In a terminal, execute the following command from a directory where you would li
   -DarchetypeArtifactId=perfana-gatling-maven-archetype \
   -DarchetypeVersion=0.0.7 \
   -DgroupId=io.perfana \
-  -DartifactId=gatling-perfana-archetype \
+  -DartifactId=gatling-mean \
   -Dversion=1.0-SNAPSHOT \
   -Dpackage=io.perfana.mean \
   -DsimulationClassName=Mean \
