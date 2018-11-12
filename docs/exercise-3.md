@@ -163,7 +163,7 @@ In Gatling you use [httpProtocol](https://gatling.io/docs/current/http/http_prot
 import io.gatling.commons.stats.KO
 
   private val baseHttpProtocol = http
-     .baseURL(Configuration.targetBaseUrl)
+     .baseUrl(Configuration.targetBaseUrl)
      .acceptHeader("text/html")
      .acceptEncodingHeader("gzip, deflate")
      .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
@@ -172,7 +172,7 @@ import io.gatling.commons.stats.KO
      .silentResources
  
    private val baseHttpDebugProtocol = http
-     .baseURL(Configuration.targetBaseUrl)
+     .baseUrl(Configuration.targetBaseUrl)
      .acceptHeader("text/html")
      .acceptEncodingHeader("gzip, deflate")
      .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
@@ -219,7 +219,7 @@ In a terminal, run the following command to test the script against the Mean app
 
 ```  
 
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,debug
+mvn clean perfana-gatling:test -Ptest-env-local,debug
  ```
  
 Unfortunately the Sign up fails, as the logs indicate:
@@ -233,15 +233,6 @@ Request 'SignUp - Submit' failed: status.find.in(200,304,201,202,203,204,205,206
 
 To debug a failing script there are a number of options available:
 
-* use an [extraInfoExtractor](https://gatling.io/docs/2.3/http/http_protocol/?highlight=extrainfo). For your convenience the extraInfoExtractor is already configured on the httpDebugProtocol in configuration/Configuration.scala:
-
-```scala    
-    .extraInfoExtractor(ExtraInfo => {
-      if(ExtraInfo.status == KO)
-        println("httpCode: " + ExtraInfo.response.statusCode + ", request url: " +  ExtraInfo.request.getUri.toUrl()  + /*", response: "+ ExtraInfo.response.body.string +*/ ", User: " + ExtraInfo.session("user").as[String])
-      Nil
-    })
-```
 * Change the loglevel of Gatling to DEBUG or TRACE in logback.xml
 * Pro tip: install a web proxy like Fiddler or Charles proxy and use the "proxy" profile to route the Gatling traffic through a proxy. This will speed up your debugging significantly compared to sifting through huge logs!
 
