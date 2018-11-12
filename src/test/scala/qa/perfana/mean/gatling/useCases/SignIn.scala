@@ -20,7 +20,7 @@ object SignIn {
       .exec(http("SignIn - Submit")
         .post("/api/auth/signin")
         .headers(headers_5)
-        .body(ElFileBody("SignIn.txt"))
+        .body(ElFileBody("request-bodies/SignIn.txt"))
         .check(status.in(200,400))
         .check(jsonPath("$._id").optional.saveAs("user_id")))
 

@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-   
+
 
     <groupId>qa.perfana</groupId>
     <artifactId>gatling-mean</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
- 
+
         <encoding>UTF-8</encoding>
 
         <!-- dependency versioning -->
-        <gatling.version>2.3.0</gatling.version>
-        <perfana-gatling-maven-plugin.version>1.0.0</perfana-gatling-maven-plugin.version>
+        <gatling.version>3.0.0</gatling.version>
+        <perfana-gatling-maven-plugin.version>3.0.1</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
         <perfanaUrl>http://localhost:4000</perfanaUrl>
@@ -59,7 +59,7 @@
 
         <application>Mean</application>
         <applicationRelease>1.0</applicationRelease>
-        
+
     </properties>
 
     <dependencyManagement>
@@ -84,11 +84,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>build-helper-maven-plugin</artifactId>
-                    <version>3.0.0</version>
-                </plugin>
-                <plugin>
                     <groupId>io.perfana</groupId>
                     <artifactId>perfana-gatling-maven-plugin</artifactId>
                     <version>${perfana-gatling-maven-plugin.version}</version>
@@ -97,24 +92,6 @@
         </pluginManagement>
 
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.10</version>
-                <executions>
-                    <execution>
-                        <id>timestamp-property</id>
-                        <goals>
-                            <goal>timestamp-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>build.time</name>
-                            <pattern>yyyyMMdd-HHmmss</pattern>
-                            <timeZone>CET</timeZone>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>io.perfana</groupId>
                 <artifactId>perfana-gatling-maven-plugin</artifactId>
@@ -163,53 +140,53 @@
     </build>
 
 
-  <!-- ************************************************************************ ==
-  == Below we have defined three sets of profiles, which control the type of    ==
-  == test that will be run and the targeted environment.                        ==
-  == If you wish to run a stress test on acceptance, use:                       ==
-  == mvn perfana-gatling:integration-test -Ptest-type-stress,test-env-acc       ==
-  == ************************************************************************ -->
+    <!-- ************************************************************************ ==
+    == Below we have defined three sets of profiles, which control the type of    ==
+    == test that will be run and the targeted environment.                        ==
+    == If you wish to run a stress test on acceptance, use:                       ==
+    == mvn perfana-gatling:integration-test -Ptest-type-stress,test-env-acc       ==
+    == ************************************************************************ -->
 
     <profiles>
 
-    <!-- Test environment profiles -->
+        <!-- Test environment profiles -->
 
-    <profile>
-        <id>test-env-local</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>http://localhost:3333</targetBaseUrl>
-            <testEnvironment>local</testEnvironment>
-        </properties>
-    </profile>
+        <profile>
+            <id>test-env-local</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <targetBaseUrl>http://localhost:3333</targetBaseUrl>
+                <testEnvironment>local</testEnvironment>
+            </properties>
+        </profile>
 
-   <profile>
-        <id>test-env-tst</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>https://tst.example.com</targetBaseUrl>
-            <testEnvironment>tst</testEnvironment>
-        </properties>
-    </profile>
-
-
-    <profile>
-        <id>test-env-acc</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>https://acc.example.com</targetBaseUrl>
-            <testEnvironment>acc</testEnvironment>
-        </properties>
-    </profile>
+        <profile>
+            <id>test-env-tst</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <targetBaseUrl>https://tst.example.com</targetBaseUrl>
+                <testEnvironment>tst</testEnvironment>
+            </properties>
+        </profile>
 
 
-    <!-- Test type profiles -->
+        <profile>
+            <id>test-env-acc</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <targetBaseUrl>http://mean:3000</targetBaseUrl>
+                <testEnvironment>acc</testEnvironment>
+            </properties>
+        </profile>
+
+
+        <!-- Test type profiles -->
 
         <profile>
             <id>test-type-stress</id>
@@ -223,7 +200,7 @@
                 <rampupTimeInSeconds>3600</rampupTimeInSeconds>
                 <constantLoadTimeInSeconds>1</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
-                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
                 <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
@@ -240,7 +217,7 @@
                 <rampupTimeInSeconds>60</rampupTimeInSeconds>
                 <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
-                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
                 <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
@@ -257,7 +234,7 @@
                 <rampupTimeInSeconds>900</rampupTimeInSeconds>
                 <constantLoadTimeInSeconds>172800</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
-                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
                 <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
@@ -275,7 +252,7 @@
                 <constantLoadTimeInSeconds>3600</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
                 <assertResultsEnabled>true</assertResultsEnabled>
-                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${build.time}</testRunId>
+                <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
                 <graphitePrefix>gatling2.nightly</graphitePrefix>
             </properties>
         </profile>

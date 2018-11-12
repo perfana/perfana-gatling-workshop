@@ -8,7 +8,7 @@ import io.gatling.jdbc.Predef._
 
 object UserFeeder {
 
-  val user = csv("users.csv").circular
+  val user = csv("data/users.csv").circular
 
 
 }

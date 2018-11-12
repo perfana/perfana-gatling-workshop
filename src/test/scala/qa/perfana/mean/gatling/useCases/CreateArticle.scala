@@ -24,7 +24,7 @@ object CreateArticle{
       .exec(http("Submit article")
       .post("/api/articles")
       .headers(headers_1)
-      .body(RawFileBody("CreateArticle.txt"))
+      .body(RawFileBody("request-bodies/CreateArticle.txt"))
       .check(jsonPath("$._id").saveAs("articleId"))
       .resources(http("View article")
         .get("/api/articles/${articleId}"),
