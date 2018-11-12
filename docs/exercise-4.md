@@ -52,7 +52,7 @@ import io.gatling.jdbc.Predef._
   
 object UserFeeder {
 
-  val user = csv("users.csv").circular
+  val user = csv("data/users.csv").circular
 
 
 }
@@ -132,7 +132,7 @@ object UserFeeder {
 * To run the script execute this command in your terminal
 
 ```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,debug
+mvn clean perfana-gatling:test -Ptest-env-local,debug
  ```
  
 If all is well you should see the last four Sign up calls succeeded. That means for the first five users there is no use signing up again. So let's make our script a little bit more fancy by only signing up for users in our list that have not signed up yet. How do we find out if a user has signed up: right, by trying to sign in!
