@@ -29,10 +29,10 @@ In a terminal, execute the following command from a directory where you would li
   -DarchetypeGroupId=io.perfana \
   -DarchetypeArtifactId=perfana-gatling-maven-archetype \
   -DarchetypeVersion=0.0.7 \
-  -DgroupId=io.perfana \
+  -DgroupId=qa.perfana \
   -DartifactId=gatling-mean \
   -Dversion=1.0-SNAPSHOT \
-  -Dpackage=io.perfana.mean \
+  -Dpackage=qa.perfana.mean \
   -DsimulationClassName=Mean \
   -Dapplication=Mean \
   -DapplicationRelease=1.0   
