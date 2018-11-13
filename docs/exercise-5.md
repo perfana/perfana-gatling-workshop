@@ -75,7 +75,7 @@ SignIn.txt
 * To run the script execute this command in your terminal
 
 ```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,debug
+mvn clean install perfana-gatling:test -Ptest-env-local,debug
  ```
 
 The logs show that the app returns the user object when the sign in succeeds. 
