@@ -20,7 +20,7 @@ It does NOT cover:
 
 ## Prerequisites
 * [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
-* JDK8 installed
+* JDK9 installed
 * Maven installed
 * An IDE with Scala support, for instance [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 * Gatling bundle installed, get instructions [here](https://gatling.io/docs/current/quickstart/)
