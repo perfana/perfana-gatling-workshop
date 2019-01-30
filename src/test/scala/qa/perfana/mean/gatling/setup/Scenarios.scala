@@ -19,7 +19,8 @@ object Scenarios {
 
   val acceptanceTestScenario = scenario("acceptanceTestScenario")
     .feed(UserFeeder.user)
-    .exec(Home.userAction)
+    .exitBlockOnFail(
+     exec(Home.userAction)
     .exec(SignIn.userAction)
     .repeat(3){
       randomSwitch(
@@ -28,7 +29,7 @@ object Scenarios {
         50.0 -> exec(ListArticles.userAction)
       )
     }
-
+    )
   /**
     * These are the scenarios run in 'debug' mode.
     */
