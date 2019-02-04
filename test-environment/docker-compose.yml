@@ -42,7 +42,7 @@ services:
     networks:
       - my-net
   perfana:
-    image: "perfana/perfana:0.22.2"
+    image: "perfana/perfana:0.23.0"
     depends_on:
       - grafana
       - influxdb
