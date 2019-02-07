@@ -27,7 +27,7 @@ The end result will be an environment with the following started docker containe
 | influxdb      | Time based metrics store                          	| 8086 / 2003      |
 | telegraf    	|    Metric collection agent 	| -   |
 
-* Additional step for Windows users: run bootstrap-windows.sh (requires cygwin)
+* Additional step for Windows users: run bootstrap-windows.sh (requires WSL or Cygwin)
 
 ## Instructions
 * Open Perfana dashboard at ```http://localhost:4000```
@@ -38,4 +38,3 @@ The end result will be an environment with the following started docker containe
 
 ## Windows users 
 * Don't forget to share your drive when Docker asks for it during start up of the containers!
-* Unfortunately the telegraf container does not work on Windows currently

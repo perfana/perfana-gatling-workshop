@@ -30,7 +30,7 @@ services:
     volumes:
       - "./influxdb.conf:/etc/influxdb/influxdb.conf:ro"
   grafana:
-    image: "perfana/grafana:dev"
+    image: "grafana/grafana:latest"
     depends_on:
       - influxdb
     environment:
@@ -42,7 +42,7 @@ services:
     networks:
       - my-net
   perfana:
-    image: "perfana/perfana:0.23.0"
+    image: "perfana/perfana:latest"
     depends_on:
       - grafana
       - influxdb
