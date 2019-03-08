@@ -77,9 +77,6 @@ services:
     - "8080:8080"
     networks:
       - my-net
-    depends_on:
-    - mean
-    - influxdb
     extra_hosts:
        - "outside:172.17.0.1"
 

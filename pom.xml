@@ -17,7 +17,7 @@
         <perfana-gatling-maven-plugin.version>3.2.3</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
-        <perfanaUrl>http://localhost:4000</perfanaUrl>
+        <perfanaUrl>http://perfana:4000</perfanaUrl>
 
         <!-- Default Simulation class  -->
         <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
