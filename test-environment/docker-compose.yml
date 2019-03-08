@@ -30,9 +30,7 @@ services:
     volumes:
       - "./influxdb.conf:/etc/influxdb/influxdb.conf:ro"
   grafana:
-    image: "perfana/grafana:dev"
-    depends_on:
-      - influxdb
+    image: "grafana/grafana:5.4.3"
     environment:
       GF_SECURITY_ADMIN_USER: foobar
       GF_SECURITY_ADMIN_PASSWORD: foobar
@@ -41,8 +39,9 @@ services:
       - "3000:3000"
     networks:
       - my-net
+
   perfana:
-    image: "perfana/perfana:0.23.0"
+    image: "perfana/perfana:0.26.0"
     depends_on:
       - grafana
       - influxdb
