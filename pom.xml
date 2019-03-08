@@ -14,10 +14,10 @@
 
         <!-- dependency versioning -->
         <gatling.version>3.0.3</gatling.version>
-        <perfana-gatling-maven-plugin.version>3.0.2</perfana-gatling-maven-plugin.version>
+        <perfana-gatling-maven-plugin.version>3.2.3</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
-        <perfanaUrl>http://perfana:3000</perfanaUrl>
+        <perfanaUrl>http://localhost:4000</perfanaUrl>
 
         <!-- Default Simulation class  -->
         <applicationSimulation>qa.perfana.mean.gatling.setup.Mean</applicationSimulation>
@@ -123,7 +123,7 @@
                         <jvmArg>-DconstantLoadTimeInSeconds=${constantLoadTimeInSeconds}</jvmArg>
                         <jvmArg>-Ddebug=${debug}</jvmArg>
                         <jvmArg>-DuseProxy=${useProxy}</jvmArg>
-                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=${graphitePrefix}</jvmArg>
+                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=gatling2.${application}.${testEnvironment}</jvmArg>
                         <jvmArg>-Xms512m</jvmArg>
                         <jvmArg>-Xmx2g</jvmArg>
                         <jvmArg>-Djavax.net.ssl.sessionCacheSize=1000</jvmArg>
@@ -201,7 +201,6 @@
                 <constantLoadTimeInSeconds>1</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
                 <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
-                <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
 
@@ -218,7 +217,6 @@
                 <constantLoadTimeInSeconds>300</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
                 <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
-                <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
 
@@ -235,7 +233,6 @@
                 <constantLoadTimeInSeconds>172800</constantLoadTimeInSeconds>
                 <perfanaEnabled>true</perfanaEnabled>
                 <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
-                <graphitePrefix>gatling2</graphitePrefix>
             </properties>
         </profile>
 
