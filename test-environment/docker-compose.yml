@@ -31,8 +31,6 @@ services:
       - "./influxdb.conf:/etc/influxdb/influxdb.conf:ro"
   grafana:
     image: "grafana/grafana:latest"
-    depends_on:
-      - influxdb
     environment:
       GF_SECURITY_ADMIN_USER: foobar
       GF_SECURITY_ADMIN_PASSWORD: foobar
@@ -41,6 +39,8 @@ services:
       - "3000:3000"
     networks:
       - my-net
+    extra_hosts:
+       - "outside:172.17.0.1"
   perfana:
     image: "perfana/perfana:0.26.0"
     depends_on:
@@ -80,6 +80,8 @@ services:
     depends_on:
     - mean
     - influxdb
+    extra_hosts:
+       - "outside:172.17.0.1"
 
   mongo:
     image: mongo:3.0
