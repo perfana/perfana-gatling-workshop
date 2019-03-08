@@ -9,7 +9,8 @@ node("master") {
 
     // Get script from a GitHub repository
     git url: 'https://github.com/perfana/perfana-gatling-workshop.git'
-    // Get the maven tool.
+    git branche: 'demo'
+    // Get the maven tool.0
     // ** NOTE: This 'M3' maven tool must be configured
     // **       in the global configuration.
     def mvnHome = tool 'M3'
