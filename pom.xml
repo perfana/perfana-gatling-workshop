@@ -123,7 +123,7 @@
                         <jvmArg>-DconstantLoadTimeInSeconds=${constantLoadTimeInSeconds}</jvmArg>
                         <jvmArg>-Ddebug=${debug}</jvmArg>
                         <jvmArg>-DuseProxy=${useProxy}</jvmArg>
-                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=gatling2.${application}.${testEnvironmnet}</jvmArg>
+                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=gatling2.${application}.${testEnvironment}</jvmArg>
                         <jvmArg>-Xms512m</jvmArg>
                         <jvmArg>-Xmx2g</jvmArg>
                         <jvmArg>-Djavax.net.ssl.sessionCacheSize=1000</jvmArg>
