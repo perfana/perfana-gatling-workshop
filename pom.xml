@@ -13,8 +13,8 @@
         <encoding>UTF-8</encoding>
 
         <!-- dependency versioning -->
-        <gatling.version>3.0.3</gatling.version>
-        <perfana-gatling-maven-plugin.version>3.0.2</perfana-gatling-maven-plugin.version>
+        <gatling.version>3.1.1</gatling.version>
+        <perfana-gatling-maven-plugin.version>3.2.5</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
         <perfanaUrl>http://perfana:3000</perfanaUrl>
@@ -123,7 +123,7 @@
                         <jvmArg>-DconstantLoadTimeInSeconds=${constantLoadTimeInSeconds}</jvmArg>
                         <jvmArg>-Ddebug=${debug}</jvmArg>
                         <jvmArg>-DuseProxy=${useProxy}</jvmArg>
-                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=${graphitePrefix}</jvmArg>
+                        <jvmArg>-Dgatling.data.graphite.rootPathPrefix=gatling2.${application}.${testEnvironmnet}</jvmArg>
                         <jvmArg>-Xms512m</jvmArg>
                         <jvmArg>-Xmx2g</jvmArg>
                         <jvmArg>-Djavax.net.ssl.sessionCacheSize=1000</jvmArg>
