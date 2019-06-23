@@ -113,6 +113,12 @@
                     <constantLoadTimeInSeconds>${constantLoadTimeInSeconds}</constantLoadTimeInSeconds>
                     <assertResultsEnabled>${assertResultsEnabled}</assertResultsEnabled>
                     <perfanaEnabled>${perfanaEnabled}</perfanaEnabled>
+                     <variables>
+                        <property>
+                            <name>$service</name>
+                            <value>mean</value>
+                        </property>
+                    </variables>
                     <jvmArgs>
                         <jvmArg>-Dscenario=${scenario}</jvmArg>
                         <jvmArg>-DtestRunId=${testRunId}</jvmArg>
