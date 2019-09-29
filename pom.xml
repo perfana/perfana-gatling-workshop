@@ -14,7 +14,7 @@
 
         <!-- dependency versioning -->
         <gatling.version>3.1.1</gatling.version>
-        <perfana-gatling-maven-plugin.version>3.2.5</perfana-gatling-maven-plugin.version>
+        <perfana-gatling-maven-plugin.version>3.2.9</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
         <perfanaUrl>http://perfana:3000</perfanaUrl>
@@ -59,6 +59,7 @@
 
         <application>Mean</application>
         <applicationRelease>1.0</applicationRelease>
+        <tags></tags>
         
     </properties>
 
@@ -119,6 +120,8 @@
                             <value>mean</value>
                         </property>
                     </variables>
+                    <tags>${tags}</tags>
+
                     <jvmArgs>
                         <jvmArg>-Dscenario=${scenario}</jvmArg>
                         <jvmArg>-DtestRunId=${testRunId}</jvmArg>
@@ -225,6 +228,7 @@
                 <perfanaEnabled>true</perfanaEnabled>
                 <testRunId>${application}-${applicationRelease}-${testType}-${testEnvironment}-${maven.build.timestamp}</testRunId>
                 <graphitePrefix>gatling2</graphitePrefix>
+                <tags>release-load-test</tags>
             </properties>
         </profile>
 
