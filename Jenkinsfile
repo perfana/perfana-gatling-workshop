@@ -19,7 +19,7 @@ node("master") {
     stage 'Execute load test'
 
     // Run the test
-    sh "${mvnHome}/bin/mvn clean -U install perfana-gatling:test -Ptest-env-acc,test-type-load,assert-results -DtestRunId=$testRunId -DbuildResultsUrl=$buildUrl "
+    sh "${mvnHome}/bin/mvn clean -U install perfana-gatling:test -Ptest-env-acc,test-type-load,assert-results -DtestRunId=$testRunId -DbuildResultsUrl=$buildUrl -DperfanaUrl=http://outside:3300"
 
 
 
