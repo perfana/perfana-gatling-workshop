@@ -5,6 +5,7 @@
 
 dist/*
 target/
+results
 lib_managed/
 src_managed/
 project/boot/
