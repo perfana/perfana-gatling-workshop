@@ -180,7 +180,7 @@
         </activation>
         <properties>
             <targetBaseUrl>http://mean:3000</targetBaseUrl>
-            <testEnvironment>acc</testEnvironment>
+            <testEnvironment>local</testEnvironment>
         </properties>
     </profile>
 
