@@ -57,7 +57,7 @@ services:
 
 
   bootstrap:
-    image: "alpine:latest"
+    image: "alpine:3.9.5"
     depends_on:
       - grafana
       - influxdb
