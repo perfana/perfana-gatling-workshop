@@ -173,9 +173,8 @@
         </properties>
     </profile>
 
-
     <profile>
-        <id>test-env-acc</id>
+        <id>test-env-local-via-jenkins</id>
         <activation>
             <activeByDefault>false</activeByDefault>
         </activation>
