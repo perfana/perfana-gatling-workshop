@@ -10,7 +10,7 @@ The workshop covers the following subjects:
 
 * Create a Gatling script using the Perfana-Gatling template script
 * Setting up your aplication in Perfana
-* Setting up continuous performance validation by integratin your load test in your Jenkins CI pipeline.
+* Setting up continuous performance validation by integrating your load test in your Jenkins CI pipeline
 
 It does NOT cover:
 
@@ -20,16 +20,16 @@ It does NOT cover:
 
 ## Prerequisites
 * [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
-* JDK9 installed
+* JDK8+ installed
 * Maven installed
-* An IDE with Scala support, for instance [IntelliJ IDEA](https://www.jetbrains.com/idea/)
+* An IDE with Scala support, for instance [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/)
 * Gatling bundle installed, get instructions [here](https://gatling.io/docs/current/quickstart/)
 
 
 
 ## Setting up your environment
 
-For your convenience a complete Perfana test / demo environment is available in this repository: [https://github.com/perfana/perfana-gatling-workshop](https://github.com/perfana/perfana-gatling-workshop)
+For your convenience a complete Perfana test / demo environment is available in this repository: [https://github.com/perfana/perfana-gatling-workshop](https://github.com/perfana/perfana-gatling-workshop)  
 Please clone this repository and follow the instructions in the readme file in the "test-environment" folder.
 
 
