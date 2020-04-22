@@ -13,8 +13,8 @@
         <encoding>UTF-8</encoding>
 
         <!-- dependency versioning -->
-        <gatling.version>3.0.0</gatling.version>
-        <perfana-gatling-maven-plugin.version>3.0.1</perfana-gatling-maven-plugin.version>
+        <gatling.version>3.0.3</gatling.version>
+        <perfana-gatling-maven-plugin.version>3.0.2</perfana-gatling-maven-plugin.version>
 
         <!-- Perfana url  -->
         <perfanaUrl>http://localhost:4000</perfanaUrl>
