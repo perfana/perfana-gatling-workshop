@@ -13,7 +13,7 @@ This adds feedback on performance of an application to the feedback loop, allowi
 By using the "assert-results" profile the perfana-gatling-maven-plugin will get the consolidated results for a test run after the test run has finished.
 
 ```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,test-type-load,assert-results
+mvn clean install perfana-gatling:test -Ptest-env-local,test-type-load,assert-results
 ```
 The consolidated test run results are exposed via a REST API by Perfana. The response will look something like this
 
@@ -49,10 +49,28 @@ The demo environment includes a Jenkins instance containing a demo pipeline job.
 http://localhost:8080/job/PERFANA-GATLING-DEMO/
 ```
 
-Click "configure" to see a simple example of how to trigger a Gatling script from a Jenkins pipeline groovy script.
+Click "configure" to see a simple example of how to trigger a Gatling script from a Jenkins pipeline groovy script.  
 
+Because we will be generating load between Jenkins and the Mean application, both Docker containers, we need to add an extra environment profile in _pom.xml_ to make it work:  
 
-To check out the Jenkins-Perfana integration run the build a few times. The tests will show up in Perfana under test environment "acc" and the Jenkins build ID will be used as test run ID. 
+```xml
+<!-- Test environment profiles -->
+
+  <profile>
+      <id>test-env-local-via-jenkins</id>
+      <activation>
+          <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+          <targetBaseUrl>http://mean:3000</targetBaseUrl>
+          <testEnvironment>local</testEnvironment>
+      </properties>
+  </profile>
+```
+> Note that an unique profile ID is added and the baseUrl was changed to the internal host name which can be resolved inside Docker. The targeted test environment stays the same: local.  
+If we had specified another test environment, let's say "acc" then you would have to configure a new set of dashboards and KPIs. Because by design Perfana treats the combination application name and test environment as being unique.
+
+To check out the Jenkins-Perfana integration run the build a few times. The tests will show up in Perfana under test environment "local" and the Jenkins build ID will be used as test run ID. 
 
 When the run has finished you will see a new property in the test run summary view: "CI build result"
     You can use this url to deeplink from Perfana to the Jenkins build results page.  

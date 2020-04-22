@@ -22,10 +22,13 @@ Now let's add some KPI's to our test!
 * Click "Applications" in the side menu
 * Use the filters to select application "Mean", environment "local" and test type "loadTest"
 * Click on the "KPI" tab and click "Add KPI"
-* Create the following KPI's: 
+* Create the following KPIs: 
 
-![KPI Gatling](assets/images/kpi-gatling-1.png) ![KPI System](assets/images/kpi-system-1.png)
+![KPI Gatling](assets/images/kpi-gatling-1.png)  
 
+![KPI System](assets/images/kpi-system-1.png)
+
+>If you were not able to select the "CPU Host Usage Idle" metric it is due to an incompability of Telegraf on some hosts. You can simply skip adding the System KPI.
 
 As soon as a KPI has been added or updated, Perfana will analyze all test runs that the KPI applies to. To see the result, navigate to the test run summary view. The benchmark section will show the consolidated result for the specified requirements. You can drilldown to more details by clicking on the result. 
 
@@ -36,7 +39,7 @@ As soon as a KPI has been added or updated, Perfana will analyze all test runs t
 To see some test run comparison results we have to run the test again:
 
 ```  
-mvn clean install perfana-gatling:integration-test -Ptest-env-local,test-type-load
+mvn clean install perfana-gatling:test -Ptest-env-local,test-type-load
 ```
 
 Perfana will automatically do two test run comparisons after a test run has finished:
@@ -73,6 +76,8 @@ To view trends:
 You can use the presets to view specific time frames for KPI's or choose "View all" to customise your trends view. The vertical lines in the graphs mark the test runs, if you hover the bottom of those markers the test run ID will show. 
 
 If, for some reason, Perfana failed to write the trend points to InfluxDb you can trigger this manually bij clicking "Write trend points".
+
+> Please watch the default zoom range of Grafana in the upper right corner of the Grafana screen. Please select a suitable zoom range if needed.  
 
 [Home](index.md) 
 [Previous exercise](exercise-9.md) 

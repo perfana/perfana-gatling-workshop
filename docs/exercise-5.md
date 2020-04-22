@@ -9,9 +9,9 @@ In this exercise we will learn about how to check responses and based on the res
 
 ## Checks
 
-[Checks](https://gatling.io/docs/current/http/http_check/) are used to verify that a response matches the expectations. Gatling will report a request as failed when a check fails. Checks can also be used to parse certain values from the response and to store them in session variable to be used later on in the script.
+[Checks](https://gatling.io/docs/current/http/http_check/) are used to verify that a response matches the expectations. Gatling will report a request as failed when a check fails. Checks can also be used to parse certain values from the response and to store them in a session variable to be used later on in the script.
 
-In our use case we will check if user signs in successfully, and if not, do a sign up for the user.
+In our use case we will check if the user signs in successfully, and if not, do a sign up for the user.
 
 
 ## Steps
@@ -125,7 +125,7 @@ There are now several ways to make the script do what we want. Since we will nee
 ```
 
 The first check verifies if the http status code is either 200 or 400. If we do not tell Gatling that a 400 status code is in our use case not a failed request (the application or script are not "failing" when the Mean app returns a http 400 request) it will mark the request as failed automatically.
-The next check is parsing the response body using jsonPath and saving the value for key "_id" to a session variable named "user_id". A useful tool for debugging jsonPath is [https://jsonpath.curiousconcept.com/](https://jsonpath.curiousconcept.com/). The "optional" tells Gatling not to fail the request when the jsonPath doesn't return anything. (in case the user still needs to sign up)
+The next check is parsing the response body using jsonPath and saving the value for key "_id" to a session variable named "user_id". A useful tool for debugging jsonPath is [https://jsonpath.curiousconcept.com/](https://jsonpath.curiousconcept.com/). The "optional" tells Gatling not to fail the request when the jsonPath doesn't return anything (in case the user still needs to sign up).
 
 # Conditional execution
 
@@ -136,10 +136,9 @@ In SignIn.scala add
 ```
   .doIf(!_.contains("user_id")) {
     exec(SignUp.userAction)
-
   } 
 ```
-> The doIf statement checks if the session does NOT contain a variable "user_id" ( _ is Gatling shorthand for the session). If the condition resolves ot true the SignUp.useAction is executed.
+> The doIf statement checks if the session does NOT contain a variable "user_id" ( _ is Gatling shorthand for the session). If the condition resolves at true the SignUp.useAction is executed.
 
 Now check what happens when you run the script some iterations with both users that have signed up already and users that have not signed up yet!
 ## Result

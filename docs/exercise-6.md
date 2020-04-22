@@ -9,9 +9,9 @@ In this exercise we will learn about the concept of data correlation.
 
 ## Data correlation
 
-In the previous exercise we learned about [Checks](https://gatling.io/docs/current/http/http_check/). Checks can also be used to parse certain values from response data and to store them in session variable to be used later on in the script. We call this data correlation.
+In the previous exercise we learned about [Checks](https://gatling.io/docs/current/http/http_check/). Checks can also be used to parse certain values from response data and to store them in a session variable to be used later on in the script. We call this data correlation.
 
-In our use case we will add an article, capture the article ID form the response and use this to open the article.
+In our use case we will add an article, capture the article ID from the response and use this to open the article.
 
 ## Steps
 * First we will record the user action AddArticle with the Gatling recorder
@@ -100,7 +100,7 @@ Like we did earlier, we will add meaningful names to the requests and create a m
   
 ```
 
-The "View article" request seems to have dynamic parameter in the url. Taking a quick look in the meanJs [source](https://github.com/meanjs/mean/blob/master/modules/articles/server/routes/articles.server.routes.js) tells us this is the articleId. We have to capture this id from the response of the preceding POST request. To find out what this request looks like, we take a different approach this time using the Chrome dev tools!
+The "View article" request seems to have a dynamic parameter in the url. Taking a quick look in the meanJs [source](https://github.com/meanjs/mean/blob/master/modules/articles/server/routes/articles.server.routes.js) tells us this is the articleId. We have to capture this id from the response of the preceding POST request. To find out what this request looks like, we take a different approach this time using the Chrome DevTools!
 
 * Open the Mean demo app in Chrome.
 * Open Chrome developer tools (hit F12 or open via menu)

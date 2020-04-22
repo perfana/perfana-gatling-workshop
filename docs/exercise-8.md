@@ -8,7 +8,7 @@ We are now ready to put some load on our test environment! In this exercise we w
 
 ## Workload distribution
 
-The workload distribution of a test is specified by a combination of a scenario and a [injection](https://gatling.io/docs/2.3/general/simulation_setup/?highlight=injection) setup. In the template script, the scenario configuration is done in Scenarios.scala. When load testing an application, you try to emulate the real-live behavior of users as close a possible in your script. Gatling provides a number of building blocks to accomplish this. In our case we will use a [loop statement](https://gatling.io/docs/2.3/general/scenario/#loop-statements) and a [conditional statement](https://gatling.io/docs/2.3/general/scenario/#conditional-statements)  
+The workload distribution of a test is specified by a combination of a scenario and a [injection](https://gatling.io/docs/2.3/general/simulation_setup/?highlight=injection) setup. In the template script, the scenario configuration is done in _Scenarios.scala_. When load testing an application, you try to emulate the real-live behavior of users as close a possible in your script. Gatling provides a number of building blocks to accomplish this. In our case we will use a [loop statement](https://gatling.io/docs/2.3/general/scenario/#loop-statements) and a [conditional statement](https://gatling.io/docs/2.3/general/scenario/#conditional-statements)  
 
  
 
@@ -85,7 +85,7 @@ The perfana-gatling-maven-plugin will inform the Perfana dashboard via a REST AP
    <!-- Perfana url  -->
    <perfanaUrl>http://localhost:4000</perfanaUrl>
 ``` 
-> In our test setup, Perfana runs at localhost, port 3000
+> In our test setup, Perfana runs at localhost, mapped to port 4000
 
 ```xml
   <!-- Settings for the Perfana Dashboard -->

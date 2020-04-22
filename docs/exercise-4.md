@@ -60,7 +60,7 @@ object UserFeeder {
 ```
 > This feeder will take users from the csv file we just created and will assign the value to a session variable named "user" (the column header of the csv)
 
-* To inject the user variable we have to "feed" the script. You can do this anywhere in your script but in our case we only want to do this once at the start. In order to do so we will add it in Scenarios.scala
+* To inject the user variable we have to "feed" the script. You can do this anywhere in your script but in our case we only want to do this once at the start. In order to do so we will add it in _Scenarios.scala_
 
 ```scala
  /**
@@ -98,7 +98,7 @@ object UserFeeder {
 }
 
 ```
-* Finally we need to tell Gatling to replace the placeholders with the session variable values, by changing RawFileBody to ElFileBody :
+* Finally we need to tell Gatling to replace the placeholders with the session variable values, by changing RawFileBody to ElFileBody:
 
 ```scala
     .exec(http("SignUp - Submit")

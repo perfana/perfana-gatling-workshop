@@ -23,7 +23,7 @@ To configure a report template, follow these steps:
 
 * Click "Applications" in the side menu
 * Use the filters to select application "Mean", environment "local" and test type "loadTest"   
-* Open the "Report specification" tab
+* Click "Configuration" and open the "Report specification" tab
 * Click "Add panel"
 * Select dashboard and panel. You can add a default annotation to save yourself some time :-)
 

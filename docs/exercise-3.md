@@ -157,47 +157,46 @@ In setup/Scenarios.scala replace the modules in the "acceptanceTestScenario" and
 In Gatling you use [httpProtocol](https://gatling.io/docs/current/http/http_protocol/) to bootstrap your test script. Any property you configure in httpPrototcol will apply to all requests in the scenario. In the template script, the httpProtocol is configured in /gatling-mean/src/test/scala/qa/perfana/mean/gatling/configuration/Configuration.scala. There is a separate httpProtocol for running the script in debug mode, in case you want to use a different setup while debugging. We will take the configuration created by the Gatling recorder and make some modifications:
 * We replace the baseUrl, the root for all relative urls used in the script, to a variable that is set via a Maven profile. This is used to easily switch between environments  when running the script. As you can see, this has been done in the generated template script already.
 * We remove the Blacklist from inferHTMLResources, this will make the script download any static resources found in the application HTML. To prevent Gatling from reporting response times for each static resource, we'll add ".silentResources". We add a whitelist section to prevent the script from downloading any resources not coming from our host/domain.  
-* In the baseHttpDebugProtocol we will add a extraInfoExtractor that can help us debug issues.  
 
 ```scala
 import io.gatling.commons.stats.KO
 
-  private val baseHttpProtocol = http
-     .baseUrl(Configuration.targetBaseUrl)
-     .acceptHeader("text/html")
-     .acceptEncodingHeader("gzip, deflate")
-     .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
-     .userAgentHeader("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36")
-     .inferHtmlResources(WhiteList(""".*""" + Configuration.targetBaseUrl + """.*"""))
-     .silentResources
- 
-   private val baseHttpDebugProtocol = http
-     .baseUrl(Configuration.targetBaseUrl)
-     .acceptHeader("text/html")
-     .acceptEncodingHeader("gzip, deflate")
-     .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
-     .userAgentHeader("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36")
-     .inferHtmlResources(WhiteList(""".*""" + Configuration.targetBaseUrl + """.*"""))
-     .silentResources
+private val baseHttpProtocol = http
+  .baseUrl(Configuration.targetBaseUrl)
+  .acceptHeader("text/html")
+  .acceptEncodingHeader("gzip, deflate")
+  .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
+  .userAgentHeader("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36")
+  .inferHtmlResources(WhiteList(""".*""" + Configuration.targetBaseUrl + """.*"""))
+  .silentResources
+
+private val baseHttpDebugProtocol = http
+  .baseUrl(Configuration.targetBaseUrl)
+  .acceptHeader("text/html")
+  .acceptEncodingHeader("gzip, deflate")
+  .acceptLanguageHeader("en-US,en;q=0.9,nl;q=0.8,de;q=0.7")
+  .userAgentHeader("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.119 Safari/537.36")
+  .inferHtmlResources(WhiteList(""".*""" + Configuration.targetBaseUrl + """.*"""))
+  .silentResources
      
 ```   
 
 ## Test environment profile
-Next, we add a test environment profile for testing the Mean app in our localhost. This profile contains the targetBaseUrl variable.
+Next, we add a test environment profile for testing the Mean app in our localhost in _pom.xml_. This profile contains the targetBaseUrl variable.
 
 ```xml
-  <!-- Test environment profiles -->
+<!-- Test environment profiles -->
 
-    <profile>
-        <id>test-env-local</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <targetBaseUrl>http://localhost:3333</targetBaseUrl>
-            <testEnvironment>local</testEnvironment>
-        </properties>
-    </profile>
+  <profile>
+      <id>test-env-local</id>
+      <activation>
+          <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+          <targetBaseUrl>http://localhost:3333</targetBaseUrl>
+          <testEnvironment>local</testEnvironment>
+      </properties>
+  </profile>
 ``` 
 
 ## Run the script
@@ -207,8 +206,8 @@ It's time now to give it a spin! The template script uses a fork of the [gatling
 A short explanation:
 
 The script can be configured with three types of profiles:
-* Workload profiles: to configure the workload of the test
-* Test environment profiles: to configure the environment to use for the test
+* workload profiles: to configure the workload of the test
+* test environment profiles: to configure the environment to use for the test
 * "special profiles": to trigger some specific script behavior, e.g. to run in debug mode, use a proxy.
 
 In a terminal, run the following command to test the script against the Mean app running on your local machine, in debug mode:
@@ -218,7 +217,7 @@ In a terminal, run the following command to test the script against the Mean app
 mvn clean perfana-gatling:test -Ptest-env-local,debug
  ```
  
-Unfortunately the Sign up fails, as the logs indicate:
+Unfortunately the Sign up fails, as the logs indicates:
 
 ```  
 Request 'SignUp - Submit' failed: status.find.in(200,304,201,202,203,204,205,206,207,208,209), but actually found 400
@@ -230,16 +229,16 @@ Request 'SignUp - Submit' failed: status.find.in(200,304,201,202,203,204,205,206
 To debug a failing script there are a number of options available:
 
 * Change the loglevel of Gatling to DEBUG or TRACE in logback.xml
-* Pro tip: install a web proxy like Fiddler or Charles proxy and use the "proxy" profile to route the Gatling traffic through a proxy. This will speed up your debugging significantly compared to sifting through huge logs!
+* Pro tip: install a web proxy like [Fiddler](https://www.telerik.com/fiddler) or [Charles proxy](http://www.charlesproxy.com/) and use the "proxy" profile to route the Gatling traffic through a proxy (localhost:8888). This will speed up your debugging significantly compared to sifting through huge logs!
 
 
 For now we will try setting the loglevel to DEBUG:
 
 ```  
-<!-- Uncomment for logging ALL HTTP request and responses -->
-	 	<!--<logger name="io.gatling.http" level="TRACE" />-->
-	<!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
-	 	<logger name="io.gatling.http" level="DEBUG" /> 
+<!-- uncomment and set to DEBUG to log all failing HTTP requests -->
+<!-- uncomment and set to TRACE to log all HTTP requests -->
+<logger name="io.gatling.http.engine.response" level="DEBUG" />
+<!--<logger name="io.gatling.http.engine.response" level="TRACE" />-->
 ```
 
 That should help you find the root cause of the script failing! We will fix the script in the next exercise.

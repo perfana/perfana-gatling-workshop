@@ -131,7 +131,7 @@ Like we did earlier, we will add meaningful names to the requests and create a m
  ]
 ```
 
-* This time we want to capture all article ID's and open a random article from the list.
+* This time we want to capture all article IDs and open a random article from the list.
 
 ```scala
 // List articles
@@ -198,7 +198,7 @@ Well that is convenient, there is a article property stating if the current user
 
 Now add the user action to Scenarios.scala, set logging to debug and see if your logic works!
 
-> Tip: to print [session variables](https://gatling.io/docs/2.3/session/session_api/) values add a line like this.
+> Tip: to print [session variables](https://gatling.io/docs/2.3/session/session_api/) values add a line like this
 
 ```scala
 
@@ -243,7 +243,7 @@ First we slightly change the jsonPath:
 
 ```  
 
-Next, we change the [conditional statement](https://gatling.io/docs/2.3/general/scenario/#conditional-statements).
+Next, we change the [conditional statement](https://gatling.io/docs/2.3/general/scenario/#conditional-statements)
 
 ```scala
 // Delete article

@@ -37,7 +37,7 @@ To link the imported dashboards to our application, follow these steps:
 
 * Click "Applications" in the side menu
 * Use the filters to select application "Mean" and environment "local"
-* Click on the "Grafana dashboards" tab and click "Add dashboard"
+* Click on "Configuration" and the "Grafana dashboards" tab and click "Add dashboard"
 * Use the drop down values to link the "Gatling" dashboard:
 
 ![dashboard-gatling](assets/images/add-dashboard-gatling.png)
@@ -54,8 +54,8 @@ The test run summary view has a number of sections:
 * Test run information: some meta data for the test run. It is possible to add annotations here.
 * Grafana dashboard links: these links will deeplink you into the Grafana dashboards
 * Grafana snapshots: Perfana uses the [Grafana snapshot feature](http://docs.grafana.org/reference/sharing/#dashboard-snapshot) to store snapshots of test run dashboards. More on snapshots later. 
-* Benchmarks: This section show the benchmark results of the configured KPI's. In the next exercise we will look into this.
-* Report: Link to a test run report, in exercise 11 we will see how to generate a report.
+* Benchmarks: this section show the benchmark results of the configured KPI's. In the next exercise we will look into this.
+* Report: link to a test run report, in exercise 11 we will see how to generate a report.
 * Manage: delete a test run or set it as baseline test run.  
   
 ## Snapshots
@@ -64,7 +64,7 @@ At the end of a test run, a snapshot is automatically generated for each of the 
   
 Snapshots for a dashboard are stored in the Grafana instance that hosts the dashboard, unless a specific "snapshot Grafana instance" has been specified in the configuration.
 
-Snapshots have a expiry that is set in the Perfana configuration. In the demo environment snapshots are deleted after 90 days. If you want to keep a snapshot from expiring, you can set it to "never expire" by clicking the "Save" icon.
+Snapshots have a expiry that is set in the Perfana configuration. In the demo environment snapshots are deleted after 90 days. If you want to keep a snapshot from expiring, you can set it to "never expire" by clicking the "Floppy disk" icon ("Set to never expire").
 
 You can view the snapshots by clicking the dashboard name.   
 
