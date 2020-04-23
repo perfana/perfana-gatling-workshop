@@ -19,9 +19,10 @@ It does NOT cover:
 
 
 ## Prerequisites
-* [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed
+* [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed  
+> If you use [Docker Desktop](https://www.docker.com/products/docker-desktop) or [VirtualBox](https://www.virtualbox.org/) then please pay atttention that sufficient memory is configured for the containers to spin up (4 GB is recommended)
 * JDK8+ installed
-* Maven installed
+* [Maven](https://maven.apache.org/) installed
 * An IDE with Scala support, for instance [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/)
 * Gatling bundle installed, get instructions [here](https://gatling.io/docs/current/quickstart/)
 
