@@ -20,7 +20,8 @@ It does NOT cover:
 
 ## Prerequisites
 * [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/) installed  
-> If you use [Docker Desktop](https://www.docker.com/products/docker-desktop) or [VirtualBox](https://www.virtualbox.org/) then please pay atttention that sufficient memory is configured for the containers to spin up (4 GB is recommended)
+> If you use [Docker Desktop](https://www.docker.com/products/docker-desktop) or [VirtualBox](https://www.virtualbox.org/) then please pay atttention that sufficient memory is configured for the containers to spin up (4 GB is recommended)  
+When using virtualisation it may happen that timezones / regional settings differ between your host machine and guest machine and this may lead to side effects during the workshop.
 * JDK8+ installed
 * [Maven](https://maven.apache.org/) installed
 * An IDE with Scala support, for instance [IntelliJ IDEA](https://www.jetbrains.com/idea/) or [Visual Studio Code](https://code.visualstudio.com/)
