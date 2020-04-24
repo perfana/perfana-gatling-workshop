@@ -173,13 +173,14 @@
         </properties>
     </profile>
 
+    <!-- this environment profile was added specific for the workshop -->
     <profile>
         <id>test-env-local-via-jenkins</id>
         <activation>
             <activeByDefault>false</activeByDefault>
         </activation>
         <properties>
-            <targetBaseUrl>http://mean:3000</targetBaseUrl>
+            <targetBaseUrl>http://mean:3000</targetBaseUrl> 
             <testEnvironment>local</testEnvironment>
         </properties>
     </profile>
